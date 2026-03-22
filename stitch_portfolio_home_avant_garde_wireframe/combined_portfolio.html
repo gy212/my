@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>作品集 - 前卫风格与极繁像素混沌</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;family=VT323&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- React for Target Cursor Component -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+    /* Zpix - Chinese Pixel Font (Local) */
+    @font-face {
+        font-family: 'Zpix';
+        src: url('./fonts/Zpix.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Apply Zpix to Chinese characters via unicode-range */
+    @font-face {
+        font-family: 'PixelChinese';
+        src: url('./fonts/Zpix.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+        unicode-range: U+4E00-9FFF, U+3400-4DBF, U+F900-FAFF, U+FE30-FE4F, U+3000-303F, U+FF00-FFEF;
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#06f906",
+                    "secondary": "#ff00ff",
+                    "background-light": "#f0f0f0",
+                    "background-dark": "#050a05",
+                    "surface-dark": "#0f230f",
+                },
+                fontFamily: {
+                    "display": ["'Press Start 2P'", "'PixelChinese'", "'Zpix'", "cursive"],
+                    "body": ["'VT323'", "'PixelChinese'", "'Zpix'", "monospace"],
+                    "tech": ["'Silkscreen'", "'PixelChinese'", "'Zpix'", "cursive"],
+                },
+                borderRadius: {"DEFAULT": "0", "lg": "0", "xl": "0", "full": "0"},
+                backgroundImage: {
+                    'dither': 'radial-gradient(#06f906 1px, transparent 1px), radial-gradient(#06f906 1px, transparent 1px)',
+                    'grid-pattern': "linear-gradient(to right, #06f906 1px, transparent 1px), linear-gradient(to bottom, #06f906 1px, transparent 1px)",
+                    'dither-pattern': "radial-gradient(#06f906 1px, transparent 0)",
+                },
+                backgroundSize: {
+                    'dither-sm': '4px 4px',
+                },
+                animation: {
+                    'marquee': 'marquee 15s linear infinite',
+                    'marquee-fast': 'marquee 10s linear infinite',
+                    'float': 'float 3s ease-in-out infinite',
+                    'glitch': 'glitch 1s linear infinite',
+                },
+                keyframes: {
+                    marquee: {
+                        '0%': { transform: 'translateX(0%)' },
+                        '100%': { transform: 'translateX(-50%)' },
+                    },
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-10px)' },
+                    },
+                    glitch: {
+                        '0%': { transform: 'translate(0)' },
+                        '20%': { transform: 'translate(-4px, 4px)' },
+                        '40%': { transform: 'translate(-4px, -4px)' },
+                        '60%': { transform: 'translate(4px, 4px)' },
+                        '80%': { transform: 'translate(4px, -4px)' },
+                        '100%': { transform: 'translate(0)' }
+                    }
+                }
+            },
+        },
+    }
+</script>
+<style>
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Section 1 styles (Avant-Garde Wireframe) */
+    img, .bg-cover {
+        image-rendering: pixelated;
+    }
+    .bg-dither-pattern {
+        background-image: linear-gradient(45deg, #222 25%, transparent 25%),
+                          linear-gradient(-45deg, #222 25%, transparent 25%),
+                          linear-gradient(45deg, transparent 75%, #222 75%),
+                          linear-gradient(-45deg, transparent 75%, #222 75%);
+        background-size: 4px 4px;
+        background-position: 0 0, 0 2px, 2px -2px, -2px 0px;
+    }
+    .bg-pixel-grid {
+        background-image:
+            linear-gradient(to right, rgba(20, 20, 20, 0.5) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(20, 20, 20, 0.5) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+    .bg-dither-green {
+        background-image: radial-gradient(circle, #06f906 1px, transparent 1px);
+        background-size: 2px 2px;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+        animation: marquee 10s linear infinite;
+    }
+    .hover-glitch:hover {
+        animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        color: #06f906;
+        text-shadow: 2px 2px #ff00ff;
+    }
+    @keyframes glitch {
+        0% { transform: translate(0) }
+        20% { transform: translate(-4px, 4px) }
+        40% { transform: translate(-4px, -4px) }
+        60% { transform: translate(4px, 4px) }
+        80% { transform: translate(4px, -4px) }
+        100% { transform: translate(0) }
+    }
+    ::-webkit-scrollbar {
+        width: 16px;
+        background: #000;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #06f906;
+        border: 4px solid #000;
+        box-shadow: inset -2px -2px 0px rgba(0,0,0,0.5);
+    }
+    .pixel-border {
+        box-shadow:
+            -4px 0 0 0 white,
+            4px 0 0 0 white,
+            0 -4px 0 0 white,
+            0 4px 0 0 white;
+        margin: 4px;
+    }
+    .pixel-border-primary {
+         box-shadow:
+            -4px 0 0 0 #06f906,
+            4px 0 0 0 #06f906,
+            0 -4px 0 0 #06f906,
+            0 4px 0 0 #06f906;
+        margin: 4px;
+    }
+    .filter-1bit {
+        filter: grayscale(100%) contrast(150%) brightness(90%) drop-shadow(4px 4px 0 #06f906);
+    }
+    .pixel-icon {
+        image-rendering: pixelated;
+        font-smooth: never;
+        -webkit-font-smoothing: none;
+    }
+
+    /* Section 2 styles (Maximalist Pixel Chaos) */
+    .glitch-text {
+        text-shadow: 4px 0 #06f906, -4px 0 #f0f;
+        image-rendering: pixelated
+    }
+    .wireframe-grid {
+        background-size: 20px 20px;
+        background-image: linear-gradient(to right, rgba(6, 249, 6, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(6, 249, 6, 0.1) 1px, transparent 1px);
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%)
+    }
+    .blend-difference {
+        mix-blend-mode: difference
+    }
+    .dark .pixel-border {
+        box-shadow: -4px 0 0 0 #06f906, 4px 0 0 0 #06f906, 0 -4px 0 0 #06f906, 0 4px 0 0 #06f906
+    }
+    .pixel-border-pink {
+        box-shadow: -4px 0 0 0 #f0f, 4px 0 0 0 #f0f, 0 -4px 0 0 #f0f, 0 4px 0 0 #f0f
+    }
+    .dither-bg {
+        background-image: radial-gradient(black 1px, transparent 1px);
+        background-size: 4px 4px
+    }
+    .dark .dither-bg {
+        background-image: radial-gradient(#06f906 1px, transparent 1px);
+        opacity: 0.1
+    }
+    .grain-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.05;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCfA8WkSPCZ71zpbSAdDM31aa29EaSeE797J86CDZOROTldc9lXBE0qq11Y3HqoznnD5xa36i6jysO6mNdY5nMUMsab3xLvCGn9Q1JCiXRM1xBBuuFgO-0chzI4KHOKBbUoLnQkkjqoL6ng4ZjXOavJWaxi2HSABzJq9K88WHO-AaHG1_rUqjQq1hpc48I3VcW4MeIndCTjYtawy0a2nd9DCUJXXA5XBPFlwd7o30XFA_AMLOk4XuPR9MgxQRpGqbqBWnk3X5erjo0)
+    }
+    .aliased {
+        -webkit-font-smoothing: none;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeSpeed;
+        image-rendering: pixelated
+    }
+    .pixel-art-ghost {
+        width: 40px;
+        height: 40px;
+        box-shadow: 10px 0 #fff, 20px 0 #fff, 30px 0 #fff, 0 10px #fff, 40px 10px #fff, 0 20px #fff, 10px 20px #000, 20px 20px #fff, 30px 20px #000, 40px 20px #fff, 0 30px #fff, 40px 30px #fff, 0 40px #fff, 10px 40px transparent, 20px 40px #fff, 30px 40px transparent, 40px 40px #fff
+    }
+    .pixel-ghost-pink {
+        box-shadow: 10px 0 #f0f, 20px 0 #f0f, 30px 0 #f0f, 0 10px #f0f, 40px 10px #f0f, 0 20px #f0f, 10px 20px #000, 20px 20px #f0f, 30px 20px #000, 40px 20px #f0f, 0 30px #f0f, 40px 30px #f0f, 0 40px #f0f, 10px 40px transparent, 20px 40px #f0f, 30px 40px transparent, 40px 40px #f0f
+    }
+
+    /* Divider styles */
+    .section-divider {
+        position: relative;
+        height: 200px;
+        background: linear-gradient(180deg, #050a05 0%, #0f230f 50%, #050a05 100%);
+        overflow: hidden;
+    }
+    .section-divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: repeating-linear-gradient(90deg, #06f906 0px, #06f906 20px, transparent 20px, transparent 40px);
+    }
+    .section-divider::after {
+        content: '';
+        position: absolute;
+        top: calc(50% + 20px);
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: repeating-linear-gradient(90deg, #ff00ff 0px, #ff00ff 20px, transparent 20px, transparent 40px);
+    }
+
+    /* Logo Loop Styles */
+    .logo-loop-container {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    .logo-loop-track {
+        display: flex;
+        width: max-content;
+        animation: logo-scroll 25s linear infinite;
+    }
+    .logo-loop-track:hover {
+        animation-play-state: paused;
+    }
+    .logo-loop-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+        flex-shrink: 0;
+        transition: all 0.2s steps(4);
+        gap: 4px;
+    }
+    .logo-loop-item:hover {
+        transform: scale(1.15) translateY(-4px);
+        filter: drop-shadow(0 0 12px #06f906);
+    }
+    .logo-loop-item > div {
+        box-shadow: 2px 2px 0 rgba(6, 249, 6, 0.3);
+        transition: all 0.2s steps(4);
+    }
+    .logo-loop-item:hover > div {
+        box-shadow: 4px 4px 0 #ff00ff;
+    }
+    @keyframes logo-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* Scroll Reveal Styles */
+    .scroll-reveal {
+        transform-origin: 0% 50%;
+    }
+    .scroll-reveal .word {
+        display: inline-block;
+        will-change: opacity, filter;
+        opacity: 0.1;
+        filter: blur(4px);
+    }
+
+    /* Velocity Glitch Effect */
+    .velocity-glitch {
+        animation: pixel-glitch-anim 0.2s steps(2) infinite !important;
+        filter: contrast(150%) hue-rotate(90deg) !important;
+    }
+    .velocity-glitch img {
+        filter: invert(100%) !important;
+    }
+    @keyframes pixel-glitch-anim {
+        0% { transform: translate(0, 0) skew(0deg); }
+        20% { transform: translate(-4px, 2px) skew(2deg); }
+        40% { transform: translate(4px, -2px) skew(-2deg); }
+        60% { transform: translate(-2px, 4px) skew(1deg); }
+        80% { transform: translate(2px, -4px) skew(-1deg); }
+        100% { transform: translate(0, 0) skew(0deg); }
+    }
+</style>
+</head>
+<body class="bg-background-dark text-white font-body overflow-x-hidden selection:bg-primary selection:text-black bg-pixel-grid aliased">
+
+<!-- React Cursor Root -->
+<div id="cursor-root"></div>
+
+<!-- ==================== PIXEL SCROLL PROGRESS ==================== -->
+<div class="fixed top-0 left-0 w-full h-3 z-[100] pointer-events-none mix-blend-exclusion">
+    <div class="pixel-progress-track w-full h-full bg-white/10 border-b-2 border-white/20"></div>
+    <div class="pixel-progress-bar absolute top-0 left-0 h-full bg-primary transition-all duration-75 ease-linear shadow-[0_0_10px_#06f906]" style="width: 0%; background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, #000 4px, #000 8px);">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-secondary border-2 border-black shadow-[4px_4px_0_#fff] flex items-center justify-center">
+            <div class="w-2 h-2 bg-white"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== ASCII TEXT HERO ==================== -->
+<div id="ascii-hero" class="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-black flex items-center justify-center">
+    <div id="ascii-container" class="absolute inset-0"></div>
+</div>
+
+<!-- ==================== SECTION 1: AVANT-GARDE WIREFRAME ==================== -->
+<div id="section1" class="relative">
+<div class="flex flex-col min-h-screen max-w-[1800px] mx-auto relative overflow-hidden">
+<div class="fixed inset-0 pointer-events-none z-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+<header class="h-16 bg-black border-y-4 border-primary flex items-center overflow-hidden relative z-40 mt-8 mx-4 shadow-[4px_4px_0_#ff00ff]">
+<div class="whitespace-nowrap flex animate-marquee text-primary font-display text-xs md:text-sm tracking-widest uppercase">
+<span class="mx-8">/// 状态：还活着</span>
+<span class="mx-8">/// 系统：在线</span>
+<span class="mx-8">/// 心情：混沌中立</span>
+<span class="mx-8">/// 状态：还活着</span>
+<span class="mx-8">/// 系统：在线</span>
+<span class="mx-8">/// 心情：混沌中立</span>
+<span class="mx-8">/// 状态：还活着</span>
+<span class="mx-8">/// 系统：在线</span>
+<span class="mx-8">/// 心情：混沌中立</span>
+</div>
+</header>
+<nav class="fixed left-6 top-1/3 z-50 flex flex-col gap-8 mix-blend-difference hidden lg:flex">
+<div class="mb-4">
+<h1 class="text-2xl font-display leading-tight tracking-tighter text-white drop-shadow-[4px_4px_0_#000]">AVANT<br/><span class="text-primary">GARDE</span></h1>
+<p class="text-sm text-primary font-body mt-2">v.2.0.45 [BUILD]</p>
+</div>
+<div class="flex flex-col gap-4 items-start">
+<a class="cursor-target group flex items-center gap-2 hover:translate-x-2 transition-transform steps(4)" href="#section2">
+<span class="w-4 h-4 bg-primary opacity-0 group-hover:opacity-100"></span>
+<span class="text-2xl font-display tracking-tight hover:text-primary hover:shadow-primary">作品</span>
+</a>
+<a class="cursor-target group flex items-center gap-2 hover:translate-x-2 transition-transform steps(4)" href="#">
+<span class="w-4 h-4 bg-primary opacity-0 group-hover:opacity-100"></span>
+<span class="text-2xl font-display tracking-tight hover:text-primary">关于</span>
+</a>
+<a class="cursor-target group flex items-center gap-2 hover:translate-x-2 transition-transform steps(4)" href="#">
+<span class="w-4 h-4 bg-primary opacity-0 group-hover:opacity-100"></span>
+<span class="text-2xl font-display tracking-tight hover:text-primary">联系</span>
+</a>
+<a class="cursor-target group flex items-center gap-2 hover:translate-x-2 transition-transform steps(4)" href="#">
+<span class="w-4 h-4 bg-primary opacity-0 group-hover:opacity-100"></span>
+<span class="text-2xl font-display tracking-tight hover:text-primary">实验室</span>
+</a>
+</div>
+</nav>
+<main class="flex-1 relative z-10 p-4 md:p-12 lg:ml-32">
+<div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-y-16 md:gap-y-32 gap-x-8 pt-10">
+<div class="col-span-1 md:col-span-6 lg:col-span-8 relative z-20">
+<div class="relative pl-4 md:pl-0">
+<div class="absolute -top-16 -left-4 md:-left-8 text-[10px] md:text-xs font-body text-primary border-2 border-primary px-3 py-2 bg-black shadow-[4px_4px_0_#fff]">
+                            状态：在线
+                        </div>
+<p class="text-primary font-body text-xl mb-4 tracking-widest pl-2 uppercase">/// 我也不知道为什么要做这个网站。</p>
+<h2 class="text-4xl md:text-6xl xl:text-7xl font-display leading-tight tracking-tighter relative drop-shadow-[6px_6px_0_#333]">
+<span class="block hover:skew-x-12 transition-transform origin-left text-white">my cat</span>
+<span class="block ml-4 md:ml-12 text-gray-400 hover:text-primary transition-colors duration-0">很可爱是吧</span>
+</h2>
+<div class="absolute -top-20 right-0 md:right-12 rotate-12 animate-[pulse_2s_steps(2)_infinite]">
+<div class="text-secondary text-[80px] leading-none pixel-icon" style="text-shadow: 4px 4px 0 #000;">
+                                &#10022;
+                            </div>
+</div>
+</div>
+</div>
+<div class="col-span-1 md:col-span-3 lg:col-span-3 lg:col-start-10 relative mt-12 md:mt-0">
+<div class="bg-black border-2 border-white p-6 transform rotate-2 hover:rotate-0 transition-transform steps(4) shadow-[8px_8px_0_#06f906]">
+<div class="flex justify-between items-start mb-4 border-b-2 border-primary pb-2 border-dashed">
+<h3 class="text-lg font-display text-white">用过的语言--可能会吧</h3>
+<span class="text-primary text-xl">{}</span>
+</div>
+<div class="logo-loop-container">
+<div class="logo-loop-track">
+<!-- First set of items -->
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<!-- Python Snake -->
+<path d="M12 3c-2 0-3 1-3 2v3c0 1 1 2 3 2h2c2 0 3 1 3 2v3c0 1-1 2-3 2" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+<path d="M12 21c2 0 3-1 3-2v-3c0-1-1-2-3-2h-2c-2 0-3-1-3-2v-3c0-1 1-2 3-2" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+<circle cx="9" cy="6" r="1" fill="#06f906"/>
+<circle cx="15" cy="18" r="1" fill="#06f906"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">Python</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<circle cx="12" cy="12" r="10" stroke="#ff00ff" stroke-width="2"/>
+<text x="12" y="16" text-anchor="middle" fill="#ff00ff" font-size="10" font-family="monospace" font-weight="bold">C</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">C</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<circle cx="12" cy="12" r="10" stroke="#06f906" stroke-width="2"/>
+<text x="12" y="15" text-anchor="middle" fill="#06f906" font-size="7" font-family="monospace" font-weight="bold">C++</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">C++</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<!-- Java Coffee Cup -->
+<path d="M6 8h10v10c0 2-2 3-5 3s-5-1-5-3V8z" stroke="#ff00ff" stroke-width="2"/>
+<path d="M16 10h2c1 0 2 1 2 2s-1 2-2 2h-2" stroke="#ff00ff" stroke-width="2"/>
+<path d="M8 5c0-1 1-2 2-1s1 2 0 3M11 4c0-1 1-2 2-1s1 2 0 3M14 5c0-1 1-2 2-1s1 2 0 3" stroke="#ff00ff" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">Java</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<path d="M4 4l2 16 6 2 6-2 2-16H4z" stroke="#06f906" stroke-width="2"/>
+<path d="M7 7h10M8 11h8M9 15h6" stroke="#06f906" stroke-width="1.5"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">HTML</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<path d="M4 4l2 16 6 2 6-2 2-16H4z" stroke="#ff00ff" stroke-width="2"/>
+<path d="M8 10h8l-1 6-3 1-3-1-.5-3" stroke="#ff00ff" stroke-width="1.5"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">CSS</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<rect x="3" y="3" width="18" height="18" rx="2" stroke="#06f906" stroke-width="2"/>
+<text x="12" y="16" text-anchor="middle" fill="#06f906" font-size="9" font-family="monospace" font-weight="bold">JS</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">JavaScript</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<rect x="3" y="3" width="18" height="18" rx="2" stroke="#ff00ff" stroke-width="2"/>
+<text x="12" y="16" text-anchor="middle" fill="#ff00ff" font-size="9" font-family="monospace" font-weight="bold">TS</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">TypeScript</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<!-- Rust Crab (Ferris) -->
+<ellipse cx="12" cy="14" rx="7" ry="5" stroke="#06f906" stroke-width="2"/>
+<circle cx="9" cy="13" r="1.5" fill="#06f906"/>
+<circle cx="15" cy="13" r="1.5" fill="#06f906"/>
+<path d="M5 14c-2-1-3-3-2-5M19 14c2-1 3-3 2-5" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+<path d="M7 10l-2-3M17 10l2-3" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">Rust</span>
+</div>
+<!-- Duplicate set for seamless loop -->
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<!-- Python Snake -->
+<path d="M12 3c-2 0-3 1-3 2v3c0 1 1 2 3 2h2c2 0 3 1 3 2v3c0 1-1 2-3 2" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+<path d="M12 21c2 0 3-1 3-2v-3c0-1-1-2-3-2h-2c-2 0-3-1-3-2v-3c0-1 1-2 3-2" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+<circle cx="9" cy="6" r="1" fill="#06f906"/>
+<circle cx="15" cy="18" r="1" fill="#06f906"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">Python</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<circle cx="12" cy="12" r="10" stroke="#ff00ff" stroke-width="2"/>
+<text x="12" y="16" text-anchor="middle" fill="#ff00ff" font-size="10" font-family="monospace" font-weight="bold">C</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">C</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<circle cx="12" cy="12" r="10" stroke="#06f906" stroke-width="2"/>
+<text x="12" y="15" text-anchor="middle" fill="#06f906" font-size="7" font-family="monospace" font-weight="bold">C++</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">C++</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<!-- Java Coffee Cup -->
+<path d="M6 8h10v10c0 2-2 3-5 3s-5-1-5-3V8z" stroke="#ff00ff" stroke-width="2"/>
+<path d="M16 10h2c1 0 2 1 2 2s-1 2-2 2h-2" stroke="#ff00ff" stroke-width="2"/>
+<path d="M8 5c0-1 1-2 2-1s1 2 0 3M11 4c0-1 1-2 2-1s1 2 0 3M14 5c0-1 1-2 2-1s1 2 0 3" stroke="#ff00ff" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">Java</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<path d="M4 4l2 16 6 2 6-2 2-16H4z" stroke="#06f906" stroke-width="2"/>
+<path d="M7 7h10M8 11h8M9 15h6" stroke="#06f906" stroke-width="1.5"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">HTML</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<path d="M4 4l2 16 6 2 6-2 2-16H4z" stroke="#ff00ff" stroke-width="2"/>
+<path d="M8 10h8l-1 6-3 1-3-1-.5-3" stroke="#ff00ff" stroke-width="1.5"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">CSS</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<rect x="3" y="3" width="18" height="18" rx="2" stroke="#06f906" stroke-width="2"/>
+<text x="12" y="16" text-anchor="middle" fill="#06f906" font-size="9" font-family="monospace" font-weight="bold">JS</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">JavaScript</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-secondary flex items-center justify-center bg-black/50 group-hover/item:bg-secondary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<rect x="3" y="3" width="18" height="18" rx="2" stroke="#ff00ff" stroke-width="2"/>
+<text x="12" y="16" text-anchor="middle" fill="#ff00ff" font-size="9" font-family="monospace" font-weight="bold">TS</text>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-secondary transition-colors">TypeScript</span>
+</div>
+<div class="logo-loop-item cursor-target group/item">
+<div class="w-10 h-10 border-2 border-primary flex items-center justify-center bg-black/50 group-hover/item:bg-primary/20 transition-colors">
+<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+<!-- Rust Crab (Ferris) -->
+<ellipse cx="12" cy="14" rx="7" ry="5" stroke="#06f906" stroke-width="2"/>
+<circle cx="9" cy="13" r="1.5" fill="#06f906"/>
+<circle cx="15" cy="13" r="1.5" fill="#06f906"/>
+<path d="M5 14c-2-1-3-3-2-5M19 14c2-1 3-3 2-5" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+<path d="M7 10l-2-3M17 10l2-3" stroke="#06f906" stroke-width="2" stroke-linecap="round"/>
+</svg>
+</div>
+<span class="font-body text-sm text-gray-400 group-hover/item:text-primary transition-colors">Rust</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-12 -left-12 z-30">
+<div class="text-white mix-blend-difference text-[100px] leading-none animate-[spin_10s_steps(8)_infinite]">
+                            &#10043;
+                        </div>
+</div>
+</div>
+<div class="col-span-1 md:col-span-4 lg:col-span-5 lg:col-start-2 relative min-h-[500px] group md:-mt-12">
+<div class="absolute inset-0 bg-cover bg-center filter-1bit group-hover:filter-none transition-all duration-500" data-alt="Cat portrait" style="background-image: url('./cat.jpg'); clip-path: polygon(
+                        0% 0%, 100% 0%, 100% 10%, 95% 10%, 95% 90%, 100% 90%, 100% 100%, 0% 100%, 0% 90%, 5% 90%, 5% 10%, 0% 10%
+                    );">
+</div>
+<div class="absolute inset-0 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABADeOQ8CXl/xfgAAAABJRU5ErkJggg==')] opacity-40 mix-blend-overlay pointer-events-none" style="image-rendering: pixelated; background-size: 4px 4px;"></div>
+<!-- Removed the hover-only layer so the cat is always visible -->
+<div class="absolute bottom-8 -right-4 bg-black border-2 border-primary p-2 z-20 rotate-[-5deg] shadow-[4px_4px_0_#fff]">
+<p class="text-primary font-body text-sm uppercase tracking-tighter">/// 已飞升.jpg</p>
+</div>
+<div class="absolute -top-16 -left-16 z-30 rotate-[15deg]">
+<div class="text-[160px] leading-none text-secondary mix-blend-screen opacity-90 font-display select-none" style="text-shadow: 4px 4px 0 #fff;">
+                            &#9786;
+                        </div>
+</div>
+</div>
+<div class="col-span-1 md:col-span-3 lg:col-span-4 lg:col-start-8 flex flex-col justify-center relative z-10 md:mt-24">
+<div class="bg-primary p-6 md:p-8 relative overflow-visible transform hover:-translate-y-2 transition-transform steps(2) border-4 border-black shadow-[8px_8px_0_#ff00ff]">
+<div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, #000 25%, #000 75%, #000 75%, #000); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
+<div class="absolute -right-8 -top-16 text-black opacity-30 pointer-events-none">
+<span class="font-display text-[120px] leading-none">&lt;/&gt;</span>
+</div>
+<h3 class="text-black text-2xl md:text-3xl font-display uppercase mb-4 relative z-10 tracking-tight drop-shadow-sm">宣言</h3>
+<div class="scroll-reveal scroll-reveal-manifesto text-black text-xl md:text-2xl font-body leading-none relative z-10">
+                            拥抱网络原始的结构之美。不做平滑处理，只有代码。像素完美是神话；美学混沌才是现实。--ai乱编的，我自己懒得编。
+                        </div>
+</div>
+</div>
+<div class="col-span-1 md:col-span-6 lg:col-span-10 lg:col-start-2 mt-20 relative">
+<h3 class="text-4xl md:text-5xl font-display text-white/20 absolute -top-12 -left-4 pointer-events-none select-none z-0">作品</h3>
+<div class="flex flex-col md:flex-row items-start md:items-end justify-between border-b-4 border-white/30 border-dashed pb-8 mb-12 group hover:border-primary transition-colors relative bg-black/50 p-4">
+<div class="relative z-10">
+<span class="text-lg font-body text-primary mb-2 block bg-black inline-block px-2 border border-primary">01 / WEBGL</span>
+<h4 class="text-3xl md:text-5xl font-display uppercase mb-4 text-white group-hover:text-primary transition-colors mt-2" style="text-shadow: 3px 3px 0 #333;">Neon Nexus</h4>
+<p class="text-gray-400 text-xl font-body max-w-md leading-tight">探索浏览器性能边界的交互式 WebGL 体验。--也许吧</p>
+</div>
+<div class="cursor-target mt-4 md:mt-0 bg-white text-black p-2 group-hover:bg-primary group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform steps(2) border-2 border-black shadow-[4px_4px_0_#fff]">
+<span class="font-display text-2xl">打开 -&gt;</span>
+</div>
+<div class="absolute right-4 md:right-32 top-0 md:-top-12 w-48 h-32 bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity steps(2) pointer-events-none z-0 border-2 border-primary hidden lg:block">
+<div class="w-full h-full bg-dither-green opacity-40 animate-pulse"></div>
+<div class="absolute inset-0 flex items-center justify-center font-display text-primary text-xs">预览不可用</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-start md:items-end justify-between border-b-4 border-white/30 border-dashed pb-8 mb-12 group hover:border-secondary transition-colors relative ml-0 md:ml-12 bg-black/50 p-4">
+<div class="relative z-10">
+<span class="text-lg font-body text-secondary mb-2 block bg-black inline-block px-2 border border-secondary">02 / ECOMMERCE</span>
+<h4 class="text-3xl md:text-5xl font-display uppercase mb-4 text-white group-hover:text-secondary transition-colors mt-2" style="text-shadow: 3px 3px 0 #333;">Brutalist Type</h4>
+<p class="text-gray-400 text-xl font-body max-w-md leading-tight">实验性字体。</p>
+</div>
+<div class="cursor-target mt-4 md:mt-0 bg-white text-black p-2 group-hover:bg-secondary group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform steps(2) border-2 border-black shadow-[4px_4px_0_#fff]">
+<span class="font-display text-2xl">打开 -&gt;</span>
+</div>
+</div>
+</div>
+<div class="col-span-1 md:col-span-3 lg:col-span-4 lg:col-start-8 mb-20 relative group">
+<div class="relative min-h-[250px] bg-[#111] overflow-hidden border-4 border-white/20 hover:border-white transition-colors">
+<div class="absolute inset-0 opacity-60 bg-cover bg-center grayscale invert contrast-200" data-alt="Map texture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSvPQnn3xyB8b7H1pknqorDiuMrZmRSx58QZW5Jy08QxwnhvhK8B8YRHYWsl6zaUxWuJWcqBM-MhSgwmmci0KuCUrrqKIzVenAgYzBMXvvvf79A86VBBryJZUjb1Ri8M5hsGZec7zzC6_XeD_fMVU69Vyrf8Z5VTxy9rAXm7iv9asb4cOReU11Qf6sv0tAjncrUpUhK8-D2q18dz27fzMD_34rqjHcHgNuDRZ6iY4bcb9VGvOkOhw64eZYfcNoxMQXAIC2JTVwzQ4'); image-rendering: pixelated;">
+</div>
+<div class="absolute inset-0 bg-dither-pattern opacity-50 mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-[linear-gradient(transparent_50%,_rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] pointer-events-none opacity-50"></div>
+<div class="absolute bottom-4 right-4 flex items-center gap-2 bg-black px-4 py-2 border-2 border-primary shadow-[4px_4px_0_#06f906]">
+<span class="w-3 h-3 bg-red-500 animate-[ping_1s_steps(2)_infinite]"></span>
+<span class="text-sm font-body text-white tracking-widest">实时位置：东京</span>
+</div>
+</div>
+<div class="absolute -top-8 -left-8 rotate-12 mix-blend-exclusion text-white z-20">
+<div class="text-[80px] leading-none font-display">
+                        globe.exe
+                    </div>
+</div>
+</div>
+</div>
+<footer class="mt-20 border-t-4 border-white/10 pt-8 pb-20 flex flex-col md:flex-row justify-between items-start md:items-center px-4 md:px-12 relative z-10 border-dotted">
+<div class="flex gap-8 mb-8 md:mb-0 font-display text-sm md:text-base">
+<a class="cursor-target text-white hover:text-primary hover:skew-x-12 transition-transform steps(4) decoration-wavy underline decoration-primary" href="#">TWITTER_X</a>
+<a class="cursor-target text-white hover:text-primary hover:skew-x-12 transition-transform steps(4) decoration-wavy underline decoration-primary" href="#">GITHUB</a>
+<a class="cursor-target text-white hover:text-primary hover:skew-x-12 transition-transform steps(4) decoration-wavy underline decoration-primary" href="#">LINKEDIN</a>
+</div>
+<div class="text-right">
+<p class="text-sm text-gray-500 font-body tracking-widest">向下滚动查看更多...</p>
+<p class="text-xs text-gray-600 font-body mt-2">第 1 部分，共 2 部分</p>
+</div>
+</footer>
+</main>
+<div class="absolute top-[20%] right-[5%] pointer-events-none z-0 mix-blend-lighten opacity-30">
+<div class="text-[200px] leading-none text-white/10 animate-[spin_20s_steps(12)_infinite] font-display">
+            &#9881;
+        </div>
+</div>
+</div>
+</div>
+<!-- END SECTION 1 -->
+
+<!-- ==================== VISUAL DIVIDER ==================== -->
+<div class="section-divider relative">
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center">
+            <div class="text-6xl md:text-8xl font-display text-primary animate-pulse">&#9660;</div>
+            <div class="scroll-reveal scroll-reveal-divider text-xl md:text-2xl font-display text-secondary mt-4 tracking-widest">进入区域_02</div>
+            <p class="text-sm font-body text-gray-500 mt-2">/// 极繁像素</p>
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+</div>
+
+<!-- ==================== SECTION 2: MAXIMALIST PIXEL CHAOS ==================== -->
+<div id="section2" class="relative">
+<div class="grain-overlay"></div>
+<div class="absolute inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 dither-bg"></div>
+<div class="absolute inset-0 bg-grid-pattern wireframe-grid dark:opacity-30 opacity-20"></div>
+</div>
+<div class="absolute top-20 right-10 z-0 animate-float hidden lg:block">
+<div class="w-8 h-8 bg-secondary shadow-[8px_0_0_0_#ff00ff,16px_0_0_0_#ff00ff,0_8px_0_0_#ff00ff,24px_8px_0_0_#ff00ff,0_16px_0_0_#ff00ff,8px_16px_0_0_#000,16px_16px_0_0_#ff00ff,24px_16px_0_0_#ff00ff,0_24px_0_0_#ff00ff,24px_24px_0_0_#ff00ff,8px_32px_0_0_#ff00ff,16px_32px_0_0_#ff00ff]"></div>
+</div>
+<div class="absolute bottom-40 left-10 z-0 animate-bounce hidden lg:block">
+<div class="pixel-art-ghost pixel-ghost-pink opacity-80 scale-150"></div>
+</div>
+<div class="absolute top-1/2 left-20 z-0 hidden lg:block">
+<div class="w-4 h-4 bg-primary shadow-[4px_4px_0_0_#06f906,8px_8px_0_0_#06f906,12px_12px_0_0_#06f906,-4px_4px_0_0_#06f906,-8px_8px_0_0_#06f906,-12px_12px_0_0_#06f906]"></div>
+</div>
+<div class="absolute top-1/3 right-1/4 z-0 hidden lg:block animate-pulse">
+<span class="material-symbols-outlined text-6xl text-primary opacity-50" style="image-rendering: pixelated;">smart_toy</span>
+</div>
+<div class="relative z-10 flex flex-col w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 pt-8 pb-32">
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center py-8 gap-6 relative">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 z-20 animate-spin" style="animation-duration: 10s;">
+<div class="w-2 h-2 bg-secondary shadow-[4px_0_#ff00ff,-4px_0_#ff00ff,0_4px_#ff00ff,0_-4px_#ff00ff]"></div>
+</div>
+<div class="flex items-center gap-4 group cursor-pointer bg-white dark:bg-black p-4 pixel-border hover:bg-primary hover:text-black transition-colors duration-0">
+<span class="material-symbols-outlined text-4xl" style="image-rendering: pixelated;">terminal</span>
+<div class="flex flex-col leading-none font-tech">
+<span class="font-bold text-xl tracking-widest">SYSTEM_OS</span>
+<span class="text-xs text-secondary">V.9.9.9_BETA</span>
+</div>
+</div>
+<nav class="flex flex-wrap gap-6 text-lg font-display tracking-widest relative">
+<div class="absolute top-1/2 left-0 w-full h-1 bg-black dark:bg-primary -z-10 hidden md:block border-t-2 border-b-2 border-dashed border-black dark:border-primary"></div>
+<a class="cursor-target relative px-4 py-2 bg-white dark:bg-black pixel-border rotate-2 hover:rotate-0 hover:bg-secondary hover:text-white transition-all duration-0 z-10" href="#section1">
+                [ 返回顶部 ]
+                <div class="absolute -top-2 -right-2 w-4 h-4 bg-primary border-2 border-black"></div>
+</a>
+<a class="cursor-target relative px-4 py-2 bg-white dark:bg-black pixel-border -rotate-2 hover:rotate-0 hover:bg-secondary hover:text-white transition-all duration-0 z-10" href="#">
+                [ 关于 ]
+                <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-primary border-2 border-black"></div>
+</a>
+<a class="cursor-target relative px-4 py-2 bg-primary text-black pixel-border rotate-3 hover:rotate-0 hover:scale-110 transition-all duration-0 z-10 font-bold" href="#">
+                [ call me ]
+            </a>
+</nav>
+</header>
+<section class="mt-12 md:mt-20 relative min-h-[60vh] flex flex-col justify-center border-x-4 border-dashed border-primary/20">
+<div class="absolute top-10 right-10 w-16 h-16 bg-secondary/20 hidden md:block animate-glitch"></div>
+<div class="absolute bottom-20 left-20 w-8 h-8 bg-primary/40 hidden md:block animate-spin"></div>
+<h1 class="absolute top-10 left-0 w-full text-[10vw] font-display text-transparent select-none opacity-20 pointer-events-none" style="-webkit-text-stroke: 4px #06f906;">
+            CREATIVE
+        </h1>
+<div class="relative z-10 mix-blend-difference pl-2 md:pl-10">
+<div class="scroll-reveal scroll-reveal-hero text-[clamp(2.5rem,9vw,7rem)] font-display leading-[1.1] tracking-tighter dark:text-white text-black drop-shadow-[4px_4px_0_rgba(6,249,6,1)]">
+社会闲杂人员 & 开发者
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 mt-16 items-start md:items-end pl-4 md:pl-24 relative">
+<div class="absolute -top-10 left-10 md:left-64 z-20 rotate-12 bg-yellow-300 text-black font-display text-xs p-2 border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+                v1.0 已就绪！
+            </div>
+<div class="max-w-xl bg-white dark:bg-black pixel-border p-6 relative">
+<div class="absolute -top-3 -left-3 w-6 h-6 bg-secondary pixel-border"></div>
+<p class="font-body text-xl md:text-2xl leading-relaxed dark:text-gray-200 text-gray-900 border-l-4 border-primary pl-4">
+<span class="text-primary">/// 警告：</span> 探索故障美学。 <br/>
+                    将 Bug 视为特性，想到什么写什么。
+                </p>
+</div>
+<button class="cursor-target group flex items-center gap-4 bg-black text-primary pixel-border px-6 py-4 text-xl font-display hover:bg-primary hover:text-black transition-all duration-0 shadow-[8px_8px_0_0_#ff00ff]">
+<span class="material-symbols-outlined group-hover:animate-spin" style="image-rendering: pixelated;">settings</span>
+                初始化
+            </button>
+</div>
+</section>
+<section class="mt-32 relative">
+<div class="flex items-center gap-4 mb-16 relative">
+<div class="absolute -top-8 left-10 text-6xl animate-bounce">&#128126;</div>
+<div class="h-2 bg-primary flex-1 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzjwqgABDAxLly79zwjjwzgA9eYV8+zYgtoAAAAASUVORK5CYII=')]"></div>
+<h2 class="text-3xl md:text-5xl font-display bg-primary text-black px-6 py-2 -rotate-1 inline-block border-4 border-black shadow-[6px_6px_0_0_#ff00ff]">/// SELECTED_WORKS</h2>
+<div class="h-2 bg-primary flex-1 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzjwqgABDAxLly79zwjjwzgA9eYV8+zYgtoAAAAASUVORK5CYII=')]"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-y-32 auto-rows-min">
+<div class="md:col-span-7 relative group cursor-target">
+<div class="absolute -top-6 -right-6 z-30 rotate-12 bg-secondary text-white font-tech text-sm px-3 py-1 pixel-border border-white">精选</div>
+<div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
+<div class="w-full aspect-video bg-cover bg-center grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Cyberpunk city street with neon signs and rainy atmosphere" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuATLoKKoauLHfg4U_UWfC5YPxYF5pVHIjxYc1Jw6k78cVgvSHy0hLeIxlM3rzBOiNcWoxeBz8ZHKdaQgSGa3egSN6EGXb6mIMzCEPHrGBMPU1mzyEDr4sMK6sEH6s-aQFY_NucnCZ9RxLpTCtwcTzMN_Vu5z9bn5BINcuJBrEe5xOhNnB34eIHKUBVYGz223AyV6xHaCCBFhoevqTIaLJCcIU-EMJ-Dwv7NrDb2JL3rP0zvRzwMprmSQFP65pKOvhvBe86c7G7s8sA"); image-rendering: pixelated;'>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-30 pointer-events-none mix-blend-hard-light"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-secondary z-0 translate-x-4 translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-primary -rotate-1 group-hover:rotate-0 transition-transform">
+<div>
+<h3 class="text-3xl font-display uppercase">Project_Alpha</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;WEB / 3D / GLITCH&gt;</p>
+</div>
+<span class="material-symbols-outlined text-5xl group-hover:text-primary transition-colors" style="image-rendering: pixelated;">arrow_outward</span>
+</div>
+</div>
+<div class="hidden md:flex md:col-span-5 items-center justify-center">
+<div class="text-8xl text-primary font-display animate-pulse opacity-20">?</div>
+</div>
+<div class="hidden md:block md:col-span-4"></div>
+<div class="md:col-span-6 relative group mt-12 md:mt-0 cursor-target">
+<div class="absolute -top-16 -left-16 z-20 hidden md:block rotate-12">
+<div class="w-4 h-4 bg-secondary shadow-[4px_0_0_0_#ff00ff,8px_0_0_0_#ff00ff,-4px_4px_0_0_#ff00ff,12px_4px_0_0_#ff00ff,-8px_8px_0_0_#ff00ff,16px_8px_0_0_#ff00ff,-8px_12px_0_0_#ff00ff,16px_12px_0_0_#ff00ff,-4px_16px_0_0_#ff00ff,12px_16px_0_0_#ff00ff,4px_20px_0_0_#ff00ff]"></div>
+</div>
+<div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
+<div class="w-full aspect-[4/3] bg-cover bg-center grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Abstract colorful liquid waves digital art background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzD0wtoWAnjDt9i1j1gK8Q12Xu726sRVQNrZleFUU6XRQ7RhUTQ_FaCWfpf6n2pGAID6z3FOg4B4Q_tbn-29DgVhjpyDVY1UKnLDtYOfa2wYXL_KAvUyksPPS7ED4HWL23nYySCkFoHHOqmNl-F4xUAyykCm_5ZNbcnSdVq8aYvKGQi25HWu70KlMxCelUmK4WPixCRUuUNmEdYfELzXLrxiHJVfpUKn0xdFtsNIqj-tiAVVOacE2Y5JmfESjkLSiI-ox9jL6zVUs"); image-rendering: pixelated;'>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-40 pointer-events-none mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-primary z-0 translate-x-4 translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-secondary rotate-1 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary transition-colors" style="image-rendering: pixelated;">arrow_outward</span>
+<div class="text-right">
+<h3 class="text-3xl font-display uppercase">Neon_Protocol</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;UI / UX / SYSTEM&gt;</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 relative group mt-12 md:-mt-32 ml-0 md:ml-12 cursor-target">
+<div class="absolute -bottom-8 -right-8 z-30 -rotate-12 bg-white text-black p-2 border-2 border-black font-body text-xl shadow-[4px_4px_0_0_#06f906]">
+                    MEOW_UI
+                 </div>
+<div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
+<div class="w-full aspect-square bg-cover bg-center grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Retro computer terminal screen with green code" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAzApxGmUyJb_muzoqNuHshGLVrj5HHY1kAd8Z06GpnPiLKtunDCqW4grcJrMvIhzeAyXqnB0rAajNg_CvG1YW6UrkJozXPiyuTH5KGQ_fVkU3pt4LftJ9TXHTLeurlit8DwekGga8QyhjIJkRgdtJvP5EkdpNFa1QYC7QwVxzu7TNBZCxx-GmwpDt7JANYrorKngjAQl51ftWK-vwm6DMJEM04oUMEUcV9JfThQMZt8EPBnCqcoGqYs5mpKXFP7gWpVKe_Mq3RrY"); image-rendering: pixelated;'>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-40 pointer-events-none mix-blend-exclusion"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-secondary z-0 translate-x-4 translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-primary rotate-2 group-hover:rotate-0 transition-transform">
+<div>
+<h3 class="text-3xl font-display uppercase">Data_Shrine</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;ART / INSTALLATION&gt;</p>
+</div>
+<span class="material-symbols-outlined text-5xl group-hover:text-primary transition-colors" style="image-rendering: pixelated;">arrow_outward</span>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-40 mb-20 relative">
+<div class="absolute top-0 right-0 w-4 h-4 bg-primary animate-ping"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 bg-secondary animate-ping delay-700"></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="cursor-target bg-white dark:bg-black border-2 border-dashed border-primary p-6 flex flex-col justify-between h-48 hover:bg-primary hover:text-black transition-colors group pixel-border">
+<span class="material-symbols-outlined text-4xl mb-auto" style="image-rendering: pixelated;">code</span>
+<span class="text-5xl font-display">少的可怜</span>
+<span class="text-sm font-tech text-secondary group-hover:text-black">代码仓库</span>
+</div>
+<div class="cursor-target bg-white dark:bg-black border-2 border-dashed border-primary p-6 flex flex-col justify-between h-48 hover:bg-primary hover:text-black transition-colors group pixel-border">
+<span class="material-symbols-outlined text-4xl mb-auto" style="image-rendering: pixelated;">coffee</span>
+<span class="text-5xl font-display">~~~</span>
+<span class="text-sm font-tech text-secondary group-hover:text-black">咖啡因水平</span>
+</div>
+<div class="cursor-target bg-primary/20 border-2 border-primary p-6 flex flex-col justify-between h-48 hover:bg-primary hover:text-black transition-colors group col-span-2 md:col-span-2 pixel-border shadow-[8px_8px_0_0_#ff00ff]">
+<div class="flex justify-between w-full">
+<span class="material-symbols-outlined text-4xl mb-auto" style="image-rendering: pixelated;">schedule</span>
+<div class="w-3 h-3 bg-red-500 animate-pulse rounded-none"></div>
+</div>
+<span class="text-5xl font-display">该写什么呢？</span>
+<span class="text-sm font-tech text-secondary group-hover:text-black uppercase">乱写吧</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- END SECTION 2 -->
+
+<!-- ==================== FINAL FOOTER (at bottom of page) ==================== -->
+<footer class="relative bottom-0 left-0 w-full bg-primary text-black py-4 z-40 border-t-4 border-black overflow-hidden whitespace-nowrap shadow-[0_-4px_0_0_#000]">
+    <div id="footer-marquee" class="animate-marquee inline-flex gap-12 items-center font-display text-xl md:text-2xl tracking-widest">
+        <!-- Content will be duplicated by JS -->
+        <span class="marquee-content inline-flex gap-12 items-center">
+            <span>/// ‘屎’山集合</span>
+            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <span>还活着</span>
+            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <span>感觉还行</span>
+            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <span>胡乱设计</span>
+            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+        </span>
+    </div>
+</footer>
+
+<script>
+    // Auto-duplicate marquee content for seamless scrolling
+    document.addEventListener('DOMContentLoaded', () => {
+        const marqueeContainer = document.getElementById('footer-marquee');
+        if (marqueeContainer) {
+            const content = marqueeContainer.querySelector('.marquee-content');
+            if (content) {
+                // Clone content to ensure seamless loop (needs 2 sets for 50% translate)
+                // We clone it 3 times to be safe on ultra-wide screens
+                marqueeContainer.appendChild(content.cloneNode(true));
+                marqueeContainer.appendChild(content.cloneNode(true));
+                marqueeContainer.appendChild(content.cloneNode(true));
+            }
+        }
+    });
+</script>
+
+<!-- ASCII Text Effect Script -->
+<style>
+    #ascii-container canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated;
+    }
+    #ascii-container pre {
+        margin: 0;
+        user-select: none;
+        padding: 0;
+        line-height: 1em;
+        text-align: left;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-image: radial-gradient(circle, #06f906 0%, #00ff88 50%, #ff00ff 100%);
+        background-attachment: fixed;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        z-index: 9;
+        mix-blend-mode: difference;
+    }
+
+    /* Target Cursor Styles - Hidden default cursor */
+    body.cursor-hidden {
+        cursor: none;
+    }
+    body.cursor-hidden * {
+        cursor: none !important;
+    }
+</style>
+<script>
+(function() {
+    const vertexShader = `
+        varying vec2 vUv;
+        uniform float uTime;
+        uniform float uEnableWaves;
+        void main() {
+            vUv = uv;
+            float time = uTime * 5.0;
+            float waveFactor = uEnableWaves;
+            vec3 transformed = position;
+            transformed.x += sin(time + position.y) * 0.5 * waveFactor;
+            transformed.y += cos(time + position.z) * 0.15 * waveFactor;
+            transformed.z += sin(time + position.x) * waveFactor;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
+        }
+    `;
+
+    const fragmentShader = `
+        varying vec2 vUv;
+        uniform float uTime;
+        uniform sampler2D uTexture;
+        void main() {
+            float time = uTime;
+            vec2 pos = vUv;
+            float r = texture2D(uTexture, pos + cos(time * 2.0 - time + pos.x) * 0.01).r;
+            float g = texture2D(uTexture, pos + tan(time * 0.5 + pos.x - time) * 0.01).g;
+            float b = texture2D(uTexture, pos - cos(time * 2.0 + time + pos.y) * 0.01).b;
+            float a = texture2D(uTexture, pos).a;
+            gl_FragColor = vec4(r, g, b, a);
+        }
+    `;
+
+    function map(n, start, stop, start2, stop2) {
+        return ((n - start) / (stop - start)) * (stop2 - start2) + start2;
+    }
+
+    class AsciiFilter {
+        constructor(renderer, options = {}) {
+            this.renderer = renderer;
+            this.domElement = document.createElement('div');
+            this.domElement.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+            this.pre = document.createElement('pre');
+            this.domElement.appendChild(this.pre);
+            this.canvas = document.createElement('canvas');
+            this.context = this.canvas.getContext('2d');
+            this.domElement.appendChild(this.canvas);
+            this.deg = 0;
+            this.invert = options.invert !== undefined ? options.invert : true;
+            this.fontSize = options.fontSize || 12;
+            this.fontFamily = options.fontFamily || "'Courier New', monospace";
+            this.charset = options.charset || " .'`^\",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+            this.width = 0; this.height = 0;
+            this.center = { x: 0, y: 0 };
+            this.mouse = { x: 0, y: 0 };
+            this.cols = 0; this.rows = 0;
+            if (this.context) this.context.imageSmoothingEnabled = false;
+            this.onMouseMove = this.onMouseMove.bind(this);
+            document.addEventListener('mousemove', this.onMouseMove);
+        }
+        setSize(width, height) {
+            this.width = width; this.height = height;
+            this.renderer.setSize(width, height);
+            this.reset();
+            this.center = { x: width / 2, y: height / 2 };
+            this.mouse = { x: this.center.x, y: this.center.y };
+        }
+        reset() {
+            if (!this.context) return;
+            this.context.font = `${this.fontSize}px ${this.fontFamily}`;
+            const charWidth = this.context.measureText('A').width;
+            this.cols = Math.floor(this.width / (this.fontSize * (charWidth / this.fontSize)));
+            this.rows = Math.floor(this.height / this.fontSize);
+            this.canvas.width = this.cols;
+            this.canvas.height = this.rows;
+            this.pre.style.cssText = `font-family:${this.fontFamily};font-size:${this.fontSize}px;margin:0;padding:0;line-height:1em;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9;background-attachment:fixed;mix-blend-mode:difference;`;
+        }
+        render(scene, camera) {
+            this.renderer.render(scene, camera);
+            const w = this.canvas.width, h = this.canvas.height;
+            if (!this.context || !w || !h) return;
+            this.context.clearRect(0, 0, w, h);
+            this.context.drawImage(this.renderer.domElement, 0, 0, w, h);
+            this.asciify(this.context, w, h);
+            this.hue();
+        }
+        onMouseMove(e) {
+            this.mouse = { x: e.clientX, y: e.clientY };
+        }
+        hue() {
+            const dx = this.mouse.x - this.center.x;
+            const dy = this.mouse.y - this.center.y;
+            const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
+            this.deg += (deg - this.deg) * 0.075;
+            this.domElement.style.filter = `hue-rotate(${this.deg.toFixed(1)}deg)`;
+        }
+        asciify(ctx, w, h) {
+            const imgData = ctx.getImageData(0, 0, w, h).data;
+            let str = '';
+            for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                    const i = (x + y * w) * 4;
+                    const r = imgData[i], g = imgData[i + 1], b = imgData[i + 2], a = imgData[i + 3];
+                    if (a === 0) { str += ' '; continue; }
+                    let gray = (0.3 * r + 0.6 * g + 0.1 * b) / 255;
+                    let idx = Math.floor((1 - gray) * (this.charset.length - 1));
+                    if (this.invert) idx = this.charset.length - idx - 1;
+                    str += this.charset[idx];
+                }
+                str += '\n';
+            }
+            this.pre.innerHTML = str;
+        }
+        dispose() { document.removeEventListener('mousemove', this.onMouseMove); }
+    }
+
+    class CanvasTxt {
+        constructor(txt, options = {}) {
+            this.canvas = document.createElement('canvas');
+            this.context = this.canvas.getContext('2d');
+            this.txt = txt;
+            this.fontSize = options.fontSize || 200;
+            this.fontFamily = options.fontFamily || 'Arial';
+            this.color = options.color || '#fdf9f3';
+            this.font = `600 ${this.fontSize}px ${this.fontFamily}`;
+        }
+        resize() {
+            if (!this.context) return;
+            this.context.font = this.font;
+            const metrics = this.context.measureText(this.txt);
+            this.canvas.width = Math.ceil(metrics.width) + 20;
+            this.canvas.height = Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) + 20;
+        }
+        render() {
+            if (!this.context) return;
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.context.fillStyle = this.color;
+            this.context.font = this.font;
+            const metrics = this.context.measureText(this.txt);
+            this.context.fillText(this.txt, 10, 10 + metrics.actualBoundingBoxAscent);
+        }
+        get texture() { return this.canvas; }
+    }
+
+    class CanvAscii {
+        constructor(options, container, width, height) {
+            this.textString = options.text;
+            this.asciiFontSize = options.asciiFontSize;
+            this.textFontSize = options.textFontSize;
+            this.textColor = options.textColor;
+            this.planeBaseHeight = options.planeBaseHeight;
+            this.enableWaves = options.enableWaves;
+            this.container = container;
+            this.width = width; this.height = height;
+            this.camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+            this.camera.position.z = 30;
+            this.scene = new THREE.Scene();
+            this.mouse = { x: width / 2, y: height / 2 };
+            this.animationFrameId = 0;
+            this.onMouseMove = this.onMouseMove.bind(this);
+        }
+        async init() {
+            try {
+                await document.fonts.load('600 200px "IBM Plex Mono"');
+                await document.fonts.load('500 12px "IBM Plex Mono"');
+            } catch (e) {}
+            await document.fonts.ready;
+            this.setMesh();
+            this.setRenderer();
+        }
+        setMesh() {
+            this.textCanvas = new CanvasTxt(this.textString, {
+                fontSize: this.textFontSize,
+                fontFamily: 'IBM Plex Mono',
+                color: this.textColor
+            });
+            this.textCanvas.resize();
+            this.textCanvas.render();
+            this.texture = new THREE.CanvasTexture(this.textCanvas.texture);
+            this.texture.minFilter = THREE.NearestFilter;
+            const textAspect = this.textCanvas.canvas.width / this.textCanvas.canvas.height;
+            const baseH = this.planeBaseHeight;
+            this.geometry = new THREE.PlaneGeometry(baseH * textAspect, baseH, 36, 36);
+            this.material = new THREE.ShaderMaterial({
+                vertexShader, fragmentShader, transparent: true,
+                uniforms: {
+                    uTime: { value: 0 },
+                    uTexture: { value: this.texture },
+                    uEnableWaves: { value: this.enableWaves ? 1.0 : 0.0 }
+                }
+            });
+            this.mesh = new THREE.Mesh(this.geometry, this.material);
+            this.scene.add(this.mesh);
+        }
+        setRenderer() {
+            this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+            this.renderer.setPixelRatio(1);
+            this.renderer.setClearColor(0x000000, 0);
+            this.filter = new AsciiFilter(this.renderer, {
+                fontFamily: 'IBM Plex Mono',
+                fontSize: this.asciiFontSize,
+                invert: true
+            });
+            this.container.appendChild(this.filter.domElement);
+            this.setSize(this.width, this.height);
+            this.container.addEventListener('mousemove', this.onMouseMove);
+            this.container.addEventListener('touchmove', this.onMouseMove);
+        }
+        setSize(w, h) {
+            this.width = w; this.height = h;
+            this.camera.aspect = w / h;
+            this.camera.updateProjectionMatrix();
+            this.filter.setSize(w, h);
+            this.center = { x: w / 2, y: h / 2 };
+        }
+        load() { this.animate(); }
+        onMouseMove(evt) {
+            const e = evt.touches ? evt.touches[0] : evt;
+            const bounds = this.container.getBoundingClientRect();
+            this.mouse = { x: e.clientX - bounds.left, y: e.clientY - bounds.top };
+        }
+        animate() {
+            const animateFrame = () => {
+                this.animationFrameId = requestAnimationFrame(animateFrame);
+                this.render();
+            };
+            animateFrame();
+        }
+        render() {
+            const time = Date.now() * 0.001;
+            this.textCanvas.render();
+            this.texture.needsUpdate = true;
+            this.material.uniforms.uTime.value = Math.sin(time);
+            this.updateRotation();
+            this.filter.render(this.scene, this.camera);
+        }
+        updateRotation() {
+            const x = map(this.mouse.y, 0, this.height, 0.5, -0.5);
+            const y = map(this.mouse.x, 0, this.width, -0.5, 0.5);
+            this.mesh.rotation.x += (x - this.mesh.rotation.x) * 0.05;
+            this.mesh.rotation.y += (y - this.mesh.rotation.y) * 0.05;
+        }
+        dispose() {
+            cancelAnimationFrame(this.animationFrameId);
+            if (this.filter) {
+                this.filter.dispose();
+                if (this.filter.domElement.parentNode) {
+                    this.container.removeChild(this.filter.domElement);
+                }
+            }
+            this.container.removeEventListener('mousemove', this.onMouseMove);
+            this.container.removeEventListener('touchmove', this.onMouseMove);
+        }
+    }
+
+    // Initialize ASCII Text
+    const container = document.getElementById('ascii-container');
+    if (container) {
+        const { width, height } = container.getBoundingClientRect();
+
+        // Random text selection
+        const randomTexts = [
+            // 问候语
+            'HELLO', 'HI THERE', 'WELCOME', 'GREETINGS', 'HEY YOU',
+            // 创意/开发词汇
+            'CODE', 'CREATE', 'BUILD', 'DESIGN', 'HACK', 'DEVELOP',
+            // 随机问题
+            'HOW ARE YOU', 'FEELING OK?', "WHAT'S UP", 'READY?'
+        ];
+        const randomText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
+
+        const ascii = new CanvAscii({
+            text: randomText,
+            asciiFontSize: 8,
+            textFontSize: 200,
+            textColor: '#06f906',
+            planeBaseHeight: 8,
+            enableWaves: true
+        }, container, width || 800, height || 400);
+
+        ascii.init().then(() => ascii.load());
+
+        window.addEventListener('resize', () => {
+            const { width: w, height: h } = container.getBoundingClientRect();
+            if (w > 0 && h > 0) ascii.setSize(w, h);
+        });
+    }
+})();
+</script>
+
+<!-- Scroll Reveal Animation -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('[Scroll Reveal] Initializing...');
+
+    gsap.registerPlugin(ScrollTrigger);
+    console.log('[Scroll Reveal] GSAP ScrollTrigger registered');
+
+    // 将文本拆分为单词
+    function splitTextIntoWords(element) {
+        const text = element.textContent.trim();
+        element.innerHTML = '';
+
+        // 按空格和标点拆分，保留标点
+        const words = text.split(/(\s+)/);
+
+        words.forEach((word, index) => {
+            if (word.match(/^\s+$/)) {
+                // 保留空格
+                element.appendChild(document.createTextNode(word));
+            } else if (word) {
+                const span = document.createElement('span');
+                span.className = 'word';
+                span.textContent = word;
+                element.appendChild(span);
+            }
+        });
+    }
+
+    // 初始化 Scroll Reveal 效果
+    function initScrollReveal(selector, options = {}) {
+        const element = document.querySelector(selector);
+        if (!element) {
+            console.warn('[Scroll Reveal] Element not found:', selector);
+            return;
+        }
+        console.log('[Scroll Reveal] Initializing element:', selector);
+
+        const {
+            baseOpacity = 0.1,
+            baseRotation = 3,
+            enableBlur = true,
+            blurStrength = 4,
+            rotationEnd = 'bottom bottom',
+            wordAnimationEnd = 'bottom bottom'
+        } = options;
+
+        // 拆分文本为单词
+        splitTextIntoWords(element);
+
+        // 旋转动画
+        gsap.fromTo(element,
+            { rotate: baseRotation },
+            {
+                ease: 'none',
+                rotate: 0,
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top bottom',
+                    end: rotationEnd,
+                    scrub: true
+                }
+            }
+        );
+
+        const wordElements = element.querySelectorAll('.word');
+        console.log('[Scroll Reveal] Found', wordElements.length, 'words in', selector);
+
+        // 透明度动画
+        gsap.fromTo(wordElements,
+            { opacity: baseOpacity },
+            {
+                ease: 'none',
+                opacity: 1,
+                stagger: 0.05,
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top bottom-=20%',
+                    end: wordAnimationEnd,
+                    scrub: true
+                }
+            }
+        );
+
+        // 模糊动画
+        if (enableBlur) {
+            gsap.fromTo(wordElements,
+                { filter: `blur(${blurStrength}px)` },
+                {
+                    ease: 'none',
+                    filter: 'blur(0px)',
+                    stagger: 0.05,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top bottom-=20%',
+                        end: wordAnimationEnd,
+                        scrub: true
+                    }
+                }
+            );
+        }
+
+        console.log('[Scroll Reveal] Animation setup complete for:', selector);
+    }
+
+    // 初始化三个 Scroll Reveal 位置
+    // 1. Section 1 宣言
+    initScrollReveal('.scroll-reveal-manifesto', {
+        enableBlur: true,
+        baseRotation: 5,
+        blurStrength: 4
+    });
+
+    // 2. 区域分隔符
+    initScrollReveal('.scroll-reveal-divider', {
+        enableBlur: true,
+        blurStrength: 4
+    });
+
+    // 3. Section 2 主标题
+    initScrollReveal('.scroll-reveal-hero', {
+        enableBlur: true,
+        blurStrength: 6,
+        baseRotation: 3
+    });
+
+    console.log('[Scroll Reveal] All initializations complete');
+
+    // ==================== NEW PIXEL SCROLL EFFECTS ====================
+    
+    // 1. Pixel Progress Bar
+    gsap.to('.pixel-progress-bar', {
+        width: '100%',
+        ease: 'none',
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.1
+        }
+    });
+
+    // 2. Velocity Glitch
+    // Apply to specific containers to avoid breaking fixed elements
+    const glitchTargets = document.querySelectorAll('main, .section-divider, #section1, #section2');
+    
+    ScrollTrigger.create({
+        onUpdate: (self) => {
+            const velocity = Math.abs(self.getVelocity());
+            // Threshold: 3000 is fast scroll
+            if (velocity > 3500) {
+                glitchTargets.forEach(el => el.classList.add('velocity-glitch'));
+                document.body.style.backgroundColor = '#0f230f'; // Flash dark green background
+            } else {
+                glitchTargets.forEach(el => el.classList.remove('velocity-glitch'));
+                document.body.style.backgroundColor = ''; 
+            }
+        }
+    });
+});
+</script>
+
+<!-- Target Cursor React Component -->
+<script type="text/babel">
+const { useEffect, useRef, useCallback, useMemo } = React;
+
+const TargetCursor = ({
+  targetSelector = '.cursor-target',
+  spinDuration = 2,
+  hideDefaultCursor = true,
+  hoverDuration = 0.2,
+  parallaxOn = true
+}) => {
+  const cursorRef = useRef(null);
+  const cornersRef = useRef(null);
+  const spinTl = useRef(null);
+  const dotRef = useRef(null);
+
+  const isActiveRef = useRef(false);
+  const targetCornerPositionsRef = useRef(null);
+  const tickerFnRef = useRef(null);
+  const activeStrengthRef = useRef({ current: 0 });
+
+  const isMobile = useMemo(() => {
+    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isSmallScreen = window.innerWidth <= 768;
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
+    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
+  }, []);
+
+  const constants = useMemo(() => ({ borderWidth: 3, cornerSize: 12 }), []);
+
+  const moveCursor = useCallback((x, y) => {
+    if (!cursorRef.current) return;
+    gsap.to(cursorRef.current, { x, y, duration: 0.1, ease: 'power3.out' });
+  }, []);
+
+  useEffect(() => {
+    if (isMobile || !cursorRef.current) return;
+
+    const originalCursor = document.body.style.cursor;
+    if (hideDefaultCursor) {
+      document.body.style.cursor = 'none';
+      document.body.classList.add('cursor-hidden');
+    }
+
+    const cursor = cursorRef.current;
+    cornersRef.current = cursor.querySelectorAll('.target-cursor-corner');
+
+    let activeTarget = null;
+    let currentLeaveHandler = null;
+    let resumeTimeout = null;
+
+    const cleanupTarget = (target) => {
+      if (currentLeaveHandler) {
+        target.removeEventListener('mouseleave', currentLeaveHandler);
+      }
+      currentLeaveHandler = null;
+    };
+
+    gsap.set(cursor, {
+      xPercent: -50,
+      yPercent: -50,
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
+    });
+
+    const createSpinTimeline = () => {
+      if (spinTl.current) {
+        spinTl.current.kill();
+      }
+      spinTl.current = gsap
+        .timeline({ repeat: -1 })
+        .to(cursor, { rotation: '+=360', duration: spinDuration, ease: 'none' });
+    };
+
+    createSpinTimeline();
+
+    const tickerFn = () => {
+      if (!targetCornerPositionsRef.current || !cursorRef.current || !cornersRef.current) {
+        return;
+      }
+      const strength = activeStrengthRef.current.current;
+      if (strength === 0) return;
+      const cursorX = gsap.getProperty(cursorRef.current, 'x');
+      const cursorY = gsap.getProperty(cursorRef.current, 'y');
+      const corners = Array.from(cornersRef.current);
+      corners.forEach((corner, i) => {
+        const currentX = gsap.getProperty(corner, 'x');
+        const currentY = gsap.getProperty(corner, 'y');
+        const targetX = targetCornerPositionsRef.current[i].x - cursorX;
+        const targetY = targetCornerPositionsRef.current[i].y - cursorY;
+        const finalX = currentX + (targetX - currentX) * strength;
+        const finalY = currentY + (targetY - currentY) * strength;
+        const duration = strength >= 0.99 ? (parallaxOn ? 0.2 : 0) : 0.05;
+        gsap.to(corner, {
+          x: finalX,
+          y: finalY,
+          duration: duration,
+          ease: duration === 0 ? 'none' : 'power1.out',
+          overwrite: 'auto'
+        });
+      });
+    };
+
+    tickerFnRef.current = tickerFn;
+
+    const moveHandler = (e) => moveCursor(e.clientX, e.clientY);
+    window.addEventListener('mousemove', moveHandler);
+
+    const scrollHandler = () => {
+      if (!activeTarget || !cursorRef.current) return;
+      const mouseX = gsap.getProperty(cursorRef.current, 'x');
+      const mouseY = gsap.getProperty(cursorRef.current, 'y');
+      const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
+      const isStillOverTarget =
+        elementUnderMouse &&
+        (elementUnderMouse === activeTarget || elementUnderMouse.closest(targetSelector) === activeTarget);
+      if (!isStillOverTarget) {
+        currentLeaveHandler?.();
+      }
+    };
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+
+    const mouseDownHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
+    };
+
+    const mouseUpHandler = () => {
+      if (!dotRef.current) return;
+      gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
+      gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
+    };
+
+    window.addEventListener('mousedown', mouseDownHandler);
+    window.addEventListener('mouseup', mouseUpHandler);
+
+    const enterHandler = (e) => {
+      const directTarget = e.target;
+      const allTargets = [];
+      let current = directTarget;
+      while (current && current !== document.body) {
+        if (current.matches && current.matches(targetSelector)) {
+          allTargets.push(current);
+        }
+        current = current.parentElement;
+      }
+      const target = allTargets[0] || null;
+      if (!target || !cursorRef.current || !cornersRef.current) return;
+      if (activeTarget === target) return;
+      if (activeTarget) {
+        cleanupTarget(activeTarget);
+      }
+      if (resumeTimeout) {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = null;
+      }
+
+      activeTarget = target;
+      const corners = Array.from(cornersRef.current);
+      corners.forEach(corner => gsap.killTweensOf(corner));
+      gsap.killTweensOf(cursorRef.current, 'rotation');
+      spinTl.current?.pause();
+      gsap.set(cursorRef.current, { rotation: 0 });
+
+      const rect = target.getBoundingClientRect();
+      const { borderWidth, cornerSize } = constants;
+      const cursorX = gsap.getProperty(cursorRef.current, 'x');
+      const cursorY = gsap.getProperty(cursorRef.current, 'y');
+
+      targetCornerPositionsRef.current = [
+        { x: rect.left - borderWidth, y: rect.top - borderWidth },
+        { x: rect.right + borderWidth - cornerSize, y: rect.top - borderWidth },
+        { x: rect.right + borderWidth - cornerSize, y: rect.bottom + borderWidth - cornerSize },
+        { x: rect.left - borderWidth, y: rect.bottom + borderWidth - cornerSize }
+      ];
+
+      isActiveRef.current = true;
+      gsap.ticker.add(tickerFnRef.current);
+
+      gsap.to(activeStrengthRef.current, { current: 1, duration: hoverDuration, ease: 'power2.out' });
+
+      corners.forEach((corner, i) => {
+        gsap.to(corner, {
+          x: targetCornerPositionsRef.current[i].x - cursorX,
+          y: targetCornerPositionsRef.current[i].y - cursorY,
+          duration: 0.2,
+          ease: 'power2.out'
+        });
+      });
+
+      const leaveHandler = () => {
+        gsap.ticker.remove(tickerFnRef.current);
+        isActiveRef.current = false;
+        targetCornerPositionsRef.current = null;
+        gsap.set(activeStrengthRef.current, { current: 0, overwrite: true });
+        activeTarget = null;
+        if (cornersRef.current) {
+          const corners = Array.from(cornersRef.current);
+          gsap.killTweensOf(corners);
+          const { cornerSize } = constants;
+          const positions = [
+            { x: -cornerSize * 1.5, y: -cornerSize * 1.5 },
+            { x: cornerSize * 0.5, y: -cornerSize * 1.5 },
+            { x: cornerSize * 0.5, y: cornerSize * 0.5 },
+            { x: -cornerSize * 1.5, y: cornerSize * 0.5 }
+          ];
+          const tl = gsap.timeline();
+          corners.forEach((corner, index) => {
+            tl.to(corner, { x: positions[index].x, y: positions[index].y, duration: 0.3, ease: 'power3.out' }, 0);
+          });
+        }
+        resumeTimeout = setTimeout(() => {
+          if (!activeTarget && cursorRef.current && spinTl.current) {
+            const currentRotation = gsap.getProperty(cursorRef.current, 'rotation');
+            const normalizedRotation = currentRotation % 360;
+            spinTl.current.kill();
+            spinTl.current = gsap
+              .timeline({ repeat: -1 })
+              .to(cursorRef.current, { rotation: '+=360', duration: spinDuration, ease: 'none' });
+            gsap.to(cursorRef.current, {
+              rotation: normalizedRotation + 360,
+              duration: spinDuration * (1 - normalizedRotation / 360),
+              ease: 'none',
+              onComplete: () => {
+                spinTl.current?.restart();
+              }
+            });
+          }
+          resumeTimeout = null;
+        }, 50);
+        cleanupTarget(target);
+      };
+      currentLeaveHandler = leaveHandler;
+      target.addEventListener('mouseleave', leaveHandler);
+    };
+
+    window.addEventListener('mouseover', enterHandler);
+
+    return () => {
+      if (tickerFnRef.current) {
+        gsap.ticker.remove(tickerFnRef.current);
+      }
+      window.removeEventListener('mousemove', moveHandler);
+      window.removeEventListener('mouseover', enterHandler);
+      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('mousedown', mouseDownHandler);
+      window.removeEventListener('mouseup', mouseUpHandler);
+      if (activeTarget) {
+        cleanupTarget(activeTarget);
+      }
+      spinTl.current?.kill();
+      document.body.style.cursor = originalCursor;
+      document.body.classList.remove('cursor-hidden');
+      isActiveRef.current = false;
+      targetCornerPositionsRef.current = null;
+      activeStrengthRef.current.current = 0;
+    };
+  }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor, isMobile, hoverDuration, parallaxOn]);
+
+  useEffect(() => {
+    if (isMobile || !cursorRef.current || !spinTl.current) return;
+    if (spinTl.current.isActive()) {
+      spinTl.current.kill();
+      spinTl.current = gsap
+        .timeline({ repeat: -1 })
+        .to(cursorRef.current, { rotation: '+=360', duration: spinDuration, ease: 'none' });
+    }
+  }, [spinDuration, isMobile]);
+
+  if (isMobile) {
+    return null;
+  }
+
+  // Custom neon green (#06f906) and magenta (#ff00ff) theme
+  return (
+    <div
+      ref={cursorRef}
+      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999]"
+      style={{ willChange: 'transform' }}
+    >
+      {/* Center dot with neon glow */}
+      <div
+        ref={dotRef}
+        className="absolute top-1/2 left-1/2 w-1 h-1 rounded-none -translate-x-1/2 -translate-y-1/2"
+        style={{
+          willChange: 'transform',
+          backgroundColor: '#06f906',
+          boxShadow: '0 0 8px #06f906, 0 0 16px #06f906'
+        }}
+      />
+      {/* Corner brackets with neon styling */}
+      <div
+        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
+        style={{
+          willChange: 'transform',
+          borderWidth: '3px',
+          borderStyle: 'solid',
+          borderColor: '#06f906',
+          boxShadow: '0 0 6px #06f906'
+        }}
+      />
+      <div
+        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
+        style={{
+          willChange: 'transform',
+          borderWidth: '3px',
+          borderStyle: 'solid',
+          borderColor: '#06f906',
+          boxShadow: '0 0 6px #06f906'
+        }}
+      />
+      <div
+        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
+        style={{
+          willChange: 'transform',
+          borderWidth: '3px',
+          borderStyle: 'solid',
+          borderColor: '#06f906',
+          boxShadow: '0 0 6px #06f906'
+        }}
+      />
+      <div
+        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
+        style={{
+          willChange: 'transform',
+          borderWidth: '3px',
+          borderStyle: 'solid',
+          borderColor: '#06f906',
+          boxShadow: '0 0 6px #06f906'
+        }}
+      />
+    </div>
+  );
+};
+
+// Render the Target Cursor component
+const root = ReactDOM.createRoot(document.getElementById('cursor-root'));
+root.render(<TargetCursor targetSelector=".cursor-target" />);
+</script>
+
+</body></html>

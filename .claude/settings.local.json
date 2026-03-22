@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:api.github.com)",
+      "WebSearch",
+      "WebFetch(domain:www.onlinewebfonts.com)",
+      "Bash(powershell:*)",
+      "mcp__reactbits__search_components",
+      "mcp__reactbits__get_component",
+      "mcp__reactbits__get_component_demo",
+      "mcp__reactbits__list_categories",
+      "mcp__reactbits__list_components",
+      "WebFetch(domain:www.reactbits.dev)",
+      "WebFetch(domain:www.frontend.fyi)",
+      "Bash(npm create vite:*)",
+      "Bash(npm install)",
+      "Bash(npm install three gsap @types/three)",
+      "Bash(npm install -D tailwindcss @tailwindcss/vite)",
+      "Bash(npm run build)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(rm:*)"
+    ]
+  }
+}
