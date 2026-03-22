@@ -1,0 +1,28 @@
+{
+  "name": "my",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i ./input.css -o ./stitch_portfolio_home_avant_garde_wireframe/dist/output.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gy212/my.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gy212/my/issues"
+  },
+  "homepage": "https://github.com/gy212/my#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

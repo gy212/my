@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html class="dark" lang="zh-CN"><head>
 <meta charset="utf-8"/>
+<meta content="前卫风格像素作品集，融合 ASCII、glitch 与实验性视觉交互。" name="description"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>作品集 - 前卫风格与极繁像素混沌</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;family=VT323&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<title>像素工坊 | Pixel Works</title>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050a05'/%3E%3Cpath d='M6 6h20v20H6z' fill='%2306f906'/%3E%3Cpath d='M10 10h12v12H10z' fill='%23ff00ff'/%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+<link href="./dist/output.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;family=VT323&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- React for Target Cursor Component -->
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
-    /* Zpix - Chinese Pixel Font (Local) */
     @font-face {
         font-family: 'Zpix';
         src: url('./fonts/Zpix.ttf') format('truetype');
@@ -23,8 +21,6 @@
         font-style: normal;
         font-display: swap;
     }
-
-    /* Apply Zpix to Chinese characters via unicode-range */
     @font-face {
         font-family: 'PixelChinese';
         src: url('./fonts/Zpix.ttf') format('truetype');
@@ -34,60 +30,6 @@
         unicode-range: U+4E00-9FFF, U+3400-4DBF, U+F900-FAFF, U+FE30-FE4F, U+3000-303F, U+FF00-FFEF;
     }
 </style>
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "primary": "#06f906",
-                    "secondary": "#ff00ff",
-                    "background-light": "#f0f0f0",
-                    "background-dark": "#050a05",
-                    "surface-dark": "#0f230f",
-                },
-                fontFamily: {
-                    "display": ["'Press Start 2P'", "'PixelChinese'", "'Zpix'", "cursive"],
-                    "body": ["'VT323'", "'PixelChinese'", "'Zpix'", "monospace"],
-                    "tech": ["'Silkscreen'", "'PixelChinese'", "'Zpix'", "cursive"],
-                },
-                borderRadius: {"DEFAULT": "0", "lg": "0", "xl": "0", "full": "0"},
-                backgroundImage: {
-                    'dither': 'radial-gradient(#06f906 1px, transparent 1px), radial-gradient(#06f906 1px, transparent 1px)',
-                    'grid-pattern': "linear-gradient(to right, #06f906 1px, transparent 1px), linear-gradient(to bottom, #06f906 1px, transparent 1px)",
-                    'dither-pattern': "radial-gradient(#06f906 1px, transparent 0)",
-                },
-                backgroundSize: {
-                    'dither-sm': '4px 4px',
-                },
-                animation: {
-                    'marquee': 'marquee 15s linear infinite',
-                    'marquee-fast': 'marquee 10s linear infinite',
-                    'float': 'float 3s ease-in-out infinite',
-                    'glitch': 'glitch 1s linear infinite',
-                },
-                keyframes: {
-                    marquee: {
-                        '0%': { transform: 'translateX(0%)' },
-                        '100%': { transform: 'translateX(-50%)' },
-                    },
-                    float: {
-                        '0%, 100%': { transform: 'translateY(0)' },
-                        '50%': { transform: 'translateY(-10px)' },
-                    },
-                    glitch: {
-                        '0%': { transform: 'translate(0)' },
-                        '20%': { transform: 'translate(-4px, 4px)' },
-                        '40%': { transform: 'translate(-4px, -4px)' },
-                        '60%': { transform: 'translate(4px, 4px)' },
-                        '80%': { transform: 'translate(4px, -4px)' },
-                        '100%': { transform: 'translate(0)' }
-                    }
-                }
-            },
-        },
-    }
-</script>
 <style>
     /* Smooth scrolling */
     html {
@@ -116,10 +58,6 @@
         background-image: radial-gradient(circle, #06f906 1px, transparent 1px);
         background-size: 2px 2px;
     }
-    @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
     .animate-marquee {
         animation: marquee 10s linear infinite;
     }
@@ -128,22 +66,177 @@
         color: #06f906;
         text-shadow: 2px 2px #ff00ff;
     }
-    @keyframes glitch {
-        0% { transform: translate(0) }
-        20% { transform: translate(-4px, 4px) }
-        40% { transform: translate(-4px, -4px) }
-        60% { transform: translate(4px, 4px) }
-        80% { transform: translate(4px, -4px) }
-        100% { transform: translate(0) }
-    }
     ::-webkit-scrollbar {
         width: 16px;
         background: #000;
     }
+    ::-webkit-scrollbar-track {
+        background:
+            linear-gradient(180deg, rgba(6,249,6,0.08), rgba(6,249,6,0.02)),
+            repeating-linear-gradient(180deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 8px),
+            #050a05;
+        border-left: 1px solid rgba(6,249,6,0.3);
+    }
     ::-webkit-scrollbar-thumb {
-        background: #06f906;
+        background:
+            linear-gradient(180deg, #ff00ff 0 22%, #06f906 22% 78%, #031603 78% 100%);
         border: 4px solid #000;
-        box-shadow: inset -2px -2px 0px rgba(0,0,0,0.5);
+        border-radius: 0;
+        box-shadow:
+            inset 0 0 0 2px rgba(255,255,255,0.12),
+            inset -3px -3px 0 rgba(0,0,0,0.55),
+            0 0 0 1px rgba(6,249,6,0.35);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background:
+            linear-gradient(180deg, #fff 0 14%, #ff00ff 14% 30%, #06f906 30% 84%, #031603 84% 100%);
+    }
+    .pixel-progress-shell {
+        height: 18px;
+        overflow: visible;
+    }
+    .pixel-progress-blur {
+        position: fixed;
+        top: 0;
+        left: -5%;
+        width: 110%;
+        height: 50px;
+        z-index: 99;
+        pointer-events: none;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        mask-image: linear-gradient(180deg, black 0%, black 30%, transparent 100%);
+        -webkit-mask-image: linear-gradient(180deg, black 0%, black 30%, transparent 100%);
+        background: linear-gradient(180deg, rgba(3,6,3,0.92) 0%, rgba(3,6,3,0.5) 40%, transparent 100%);
+    }
+    .pixel-progress-track {
+        background:
+            linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+            repeating-linear-gradient(90deg, rgba(6,249,6,0.16) 0 10px, transparent 10px 20px),
+            #050a05;
+        border-bottom: 2px solid rgba(255,255,255,0.22);
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.18),
+            inset 0 -1px 0 rgba(255,0,255,0.4);
+    }
+    .pixel-progress-bar {
+        overflow: visible;
+        background:
+            linear-gradient(90deg, rgba(6,249,6,0.95), rgba(172,255,47,0.92) 65%, rgba(255,255,255,0.95)),
+            repeating-linear-gradient(45deg, transparent, transparent 4px, #000 4px, #000 8px);
+        box-shadow:
+            0 0 12px rgba(6,249,6,0.85),
+            inset 0 0 0 1px rgba(0,0,0,0.25);
+    }
+    .pixel-progress-bar::before {
+        content: "";
+        position: absolute;
+        inset: 3px 18px 3px 0;
+        background: repeating-linear-gradient(90deg, rgba(0,0,0,0.24) 0 8px, transparent 8px 16px);
+        opacity: 0.5;
+    }
+    .pixel-progress-bar::after {
+        content: "";
+        position: absolute;
+        right: 68px;
+        top: 50%;
+        width: 54px;
+        height: 2px;
+        transform: translateY(-50%);
+        background: repeating-linear-gradient(90deg, rgba(255,255,255,0.8) 0 8px, transparent 8px 14px);
+        opacity: 0.72;
+    }
+    .pixel-runner {
+        position: absolute;
+        right: -14px;
+        top: 50%;
+        width: 104px;
+        height: 64px;
+        transform: translateY(-50%);
+        transform-origin: center;
+        filter: drop-shadow(3px 3px 0 #000) drop-shadow(0 0 10px rgba(255,0,255,0.32));
+    }
+    .pixel-runner svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        shape-rendering: crispEdges;
+    }
+    .pixel-runner__sprite {
+        animation: pixel-slime-hop 0.9s steps(3, end) infinite;
+        transform-origin: center bottom;
+        transform-box: fill-box;
+    }
+    .pixel-runner__face {
+        animation: pixel-slime-face 0.9s steps(3, end) infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+    .pixel-runner__shadow {
+        animation: pixel-slime-shadow 0.9s steps(3, end) infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+    .pixel-runner__dust {
+        animation: pixel-slime-dust 0.9s steps(3, end) infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+    .pixel-progress-shell.is-scrolling .pixel-runner__sprite,
+    .pixel-progress-shell.is-scrolling .pixel-runner__face,
+    .pixel-progress-shell.is-scrolling .pixel-runner__shadow,
+    .pixel-progress-shell.is-scrolling .pixel-runner__dust {
+        animation-duration: 0.5s;
+    }
+    @keyframes pixel-slime-hop {
+        0%, 100% {
+            transform: translateY(0) scaleX(1.12) scaleY(0.82);
+        }
+        33% {
+            transform: translateY(-16px) scaleX(0.9) scaleY(1.12);
+        }
+        66% {
+            transform: translateY(-4px) scaleX(1.03) scaleY(0.94);
+        }
+    }
+    @keyframes pixel-slime-face {
+        0%, 100% {
+            transform: translateY(2px) scaleX(1.02);
+        }
+        33% {
+            transform: translateY(-2px) scaleX(0.92);
+        }
+        66% {
+            transform: translateY(1px) scaleX(1);
+        }
+    }
+    @keyframes pixel-slime-shadow {
+        0%, 100% {
+            transform: scaleX(1.08);
+            opacity: 0.55;
+        }
+        33% {
+            transform: scaleX(0.7);
+            opacity: 0.24;
+        }
+        66% {
+            transform: scaleX(0.92);
+            opacity: 0.42;
+        }
+    }
+    @keyframes pixel-slime-dust {
+        0%, 100% {
+            transform: translateY(0) scale(0.8);
+            opacity: 0.08;
+        }
+        33% {
+            transform: translate(-2px, 3px) scale(0.4);
+            opacity: 0;
+        }
+        66% {
+            transform: translateX(-4px) scale(1);
+            opacity: 0.42;
+        }
     }
     .pixel-border {
         box-shadow:
@@ -168,6 +261,14 @@
         image-rendering: pixelated;
         font-smooth: never;
         -webkit-font-smoothing: none;
+    }
+    .icon-symbol {
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+        display: inline-block;
+        vertical-align: middle;
+        flex: none;
     }
 
     /* Section 2 styles (Maximalist Pixel Chaos) */
@@ -207,7 +308,10 @@
         pointer-events: none;
         z-index: 50;
         opacity: 0.05;
-        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCfA8WkSPCZ71zpbSAdDM31aa29EaSeE797J86CDZOROTldc9lXBE0qq11Y3HqoznnD5xa36i6jysO6mNdY5nMUMsab3xLvCGn9Q1JCiXRM1xBBuuFgO-0chzI4KHOKBbUoLnQkkjqoL6ng4ZjXOavJWaxi2HSABzJq9K88WHO-AaHG1_rUqjQq1hpc48I3VcW4MeIndCTjYtawy0a2nd9DCUJXXA5XBPFlwd7o30XFA_AMLOk4XuPR9MgxQRpGqbqBWnk3X5erjo0)
+        background-image:
+            repeating-conic-gradient(from 0deg, rgba(255,255,255,0.35) 0deg 25deg, transparent 25deg 50deg),
+            radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2) 0 1px, transparent 1px 100%);
+        background-size: 4px 4px, 7px 7px;
     }
     .aliased {
         -webkit-font-smoothing: none;
@@ -325,24 +429,128 @@
 
 <!-- React Cursor Root -->
 <div id="cursor-root"></div>
+<svg aria-hidden="true" class="hidden" focusable="false" width="0" height="0" style="position:absolute">
+<symbol id="icon-smart-toy" viewBox="0 -960 960 960">
+<path d="M280-120q-33 0-56.5-23.5T200-200v-80h-40q-33 0-56.5-23.5T80-360v-200q0-33 23.5-56.5T160-640h120v-80q0-33 23.5-56.5T360-800h80v-80h80v80h80q33 0 56.5 23.5T680-720v80h120q33 0 56.5 23.5T880-560v200q0 33-23.5 56.5T800-280h-40v80q0 33-23.5 56.5T680-120H280Zm0-80h400v-160H280v160Zm-120-240h640v-120H160v120Zm200-200h240v-80H360v80Zm40 240q17 0 28.5-11.5T440-440q0-17-11.5-28.5T400-480q-17 0-28.5 11.5T360-440q0 17 11.5 28.5T400-400Zm160 0q17 0 28.5-11.5T600-440q0-17-11.5-28.5T560-480q-17 0-28.5 11.5T520-440q0 17 11.5 28.5T560-400ZM280-200v-160 160Zm-120-240v-120 120Z"/>
+</symbol>
+<symbol id="icon-terminal" viewBox="0 -960 960 960">
+<path d="M320-280 120-480l200-200 56 56-144 144 144 144-56 56Zm80 0v-80h440v80H400Z"/>
+</symbol>
+<symbol id="icon-settings" viewBox="0 -960 960 960">
+<path d="m370-80-16-128q-13-5-24.5-12T306-236l-118 50-70-122 102-78q-2-15-2-34t2-34l-102-78 70-122 118 50q12-9 23.5-16t24.5-12l16-128h140l16 128q13 5 24.5 12t23.5 16l118-50 70 122-102 78q2 15 2 34t-2 34l102 78-70 122-118-50q-12 9-23.5 16T606-208L590-80H370Zm110-240q67 0 113.5-46.5T640-480q0-67-46.5-113.5T480-640q-67 0-113.5 46.5T320-480q0 67 46.5 113.5T480-320Z"/>
+</symbol>
+<symbol id="icon-arrow-outward" viewBox="0 -960 960 960">
+<path d="M200-200v-560h280v80H280v400h400v-200h80v280H200Zm224-224-56-56 312-312H520v-80h280v280h-80v-160L424-424Z"/>
+</symbol>
+<symbol id="icon-code" viewBox="0 -960 960 960">
+<path d="M320-280 120-480l200-200 56 56-144 144 144 144-56 56Zm320 0-56-56 144-144-144-144 56-56 200 200-200 200Z"/>
+</symbol>
+<symbol id="icon-coffee" viewBox="0 -960 960 960">
+<path d="M160-120v-80h640v80H160Zm80-160q-50 0-85-35t-35-85v-280h560q33 0 56.5 23.5T760-600h40q33 0 56.5 23.5T880-520v40q0 50-35 85t-85 35h-40q0 50-35 85t-85 35H240Zm480-160h40q17 0 28.5-11.5T800-480v-40h-80v80Z"/>
+</symbol>
+<symbol id="icon-schedule" viewBox="0 -960 960 960">
+<path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm40-400v-200h-80v240l170 102 40-66-130-76Z"/>
+</symbol>
+<symbol id="icon-star" viewBox="0 -960 960 960">
+<path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143Z"/>
+</symbol>
+</svg>
 
 <!-- ==================== PIXEL SCROLL PROGRESS ==================== -->
-<div class="fixed top-0 left-0 w-full h-3 z-[100] pointer-events-none mix-blend-exclusion">
+<div class="pixel-progress-blur" aria-hidden="true"></div>
+<div class="pixel-progress-shell fixed top-0 left-0 w-full z-[100] pointer-events-none mix-blend-exclusion">
     <div class="pixel-progress-track w-full h-full bg-white/10 border-b-2 border-white/20"></div>
-    <div class="pixel-progress-bar absolute top-0 left-0 h-full bg-primary transition-all duration-75 ease-linear shadow-[0_0_10px_#06f906]" style="width: 0%; background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, #000 4px, #000 8px);">
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-secondary border-2 border-black shadow-[4px_4px_0_#fff] flex items-center justify-center">
-            <div class="w-2 h-2 bg-white"></div>
+    <div class="pixel-progress-bar absolute top-0 left-0 h-full transition-all duration-75 ease-linear" style="width: 0%;">
+        <div class="pixel-runner" aria-hidden="true">
+            <svg viewBox="0 0 72 48" xmlns="http://www.w3.org/2000/svg">
+                <g class="pixel-runner__shadow">
+                    <rect x="16" y="40" width="24" height="4" fill="#ffffff" opacity="0.42" />
+                    <rect x="20" y="44" width="16" height="4" fill="#7df9ff" opacity="0.3" />
+                </g>
+                <g class="pixel-runner__dust">
+                    <rect x="10" y="40" width="4" height="4" fill="#ffffff" />
+                    <rect x="42" y="40" width="4" height="4" fill="#ff7de9" />
+                </g>
+                <g class="pixel-runner__sprite">
+                    <g fill="#000000">
+                        <rect x="20" y="12" width="4" height="4" />
+                        <rect x="24" y="12" width="4" height="4" />
+                        <rect x="28" y="12" width="4" height="4" />
+                        <rect x="32" y="12" width="4" height="4" />
+                        <rect x="36" y="12" width="4" height="4" />
+                        <rect x="40" y="12" width="4" height="4" />
+                        <rect x="16" y="16" width="4" height="4" />
+                        <rect x="44" y="16" width="4" height="4" />
+                        <rect x="16" y="20" width="4" height="4" />
+                        <rect x="48" y="20" width="4" height="4" />
+                        <rect x="16" y="24" width="4" height="4" />
+                        <rect x="48" y="24" width="4" height="4" />
+                        <rect x="16" y="28" width="4" height="4" />
+                        <rect x="48" y="28" width="4" height="4" />
+                        <rect x="20" y="32" width="4" height="4" />
+                        <rect x="24" y="32" width="4" height="4" />
+                        <rect x="28" y="32" width="4" height="4" />
+                        <rect x="32" y="32" width="4" height="4" />
+                        <rect x="36" y="32" width="4" height="4" />
+                        <rect x="40" y="32" width="4" height="4" />
+                    </g>
+                    <g fill="#8cff72">
+                        <rect x="20" y="16" width="4" height="4" />
+                        <rect x="24" y="16" width="4" height="4" />
+                        <rect x="28" y="16" width="4" height="4" />
+                        <rect x="32" y="16" width="4" height="4" />
+                        <rect x="36" y="16" width="4" height="4" />
+                        <rect x="40" y="16" width="4" height="4" />
+                        <rect x="20" y="20" width="4" height="4" />
+                        <rect x="24" y="20" width="4" height="4" />
+                        <rect x="28" y="20" width="4" height="4" />
+                        <rect x="32" y="20" width="4" height="4" />
+                        <rect x="36" y="20" width="4" height="4" />
+                        <rect x="40" y="20" width="4" height="4" />
+                        <rect x="20" y="24" width="4" height="4" />
+                        <rect x="24" y="24" width="4" height="4" />
+                        <rect x="28" y="24" width="4" height="4" />
+                        <rect x="32" y="24" width="4" height="4" />
+                        <rect x="36" y="24" width="4" height="4" />
+                        <rect x="40" y="24" width="4" height="4" />
+                        <rect x="24" y="28" width="4" height="4" />
+                        <rect x="28" y="28" width="4" height="4" />
+                        <rect x="32" y="28" width="4" height="4" />
+                        <rect x="36" y="28" width="4" height="4" />
+                    </g>
+                    <g fill="#baff9d">
+                        <rect x="20" y="16" width="4" height="4" />
+                        <rect x="24" y="16" width="4" height="4" />
+                        <rect x="20" y="20" width="4" height="4" />
+                        <rect x="24" y="20" width="4" height="4" />
+                        <rect x="20" y="24" width="4" height="4" />
+                        <rect x="24" y="24" width="4" height="4" />
+                        <rect x="28" y="16" width="4" height="4" opacity="0.85" />
+                        <rect x="24" y="28" width="4" height="4" opacity="0.85" />
+                    </g>
+                    <g class="pixel-runner__face">
+                        <rect x="28" y="22" width="4" height="4" fill="#0b1c0b" />
+                        <rect x="36" y="22" width="4" height="4" fill="#0b1c0b" />
+                        <rect x="32" y="26" width="4" height="4" fill="#0b1c0b" />
+                        <rect x="28" y="30" width="4" height="4" fill="#ff7de9" opacity="0.8" />
+                        <rect x="36" y="30" width="4" height="4" fill="#ff7de9" opacity="0.8" />
+                    </g>
+                </g>
+            </svg>
         </div>
     </div>
 </div>
 
 <!-- ==================== ASCII TEXT HERO ==================== -->
-<div id="ascii-hero" class="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-black flex items-center justify-center">
+<div id="ascii-hero" class="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-black flex items-center justify-center border-b border-primary/20">
+    <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 50% 50%, rgba(6,249,6,0.12), transparent 48%), linear-gradient(180deg, transparent 0%, rgba(6,249,6,0.04) 55%, rgba(255,0,255,0.08) 100%);"></div>
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
+    <div class="absolute inset-x-0 bottom-0 h-24 opacity-40" style="background: linear-gradient(180deg, transparent 0%, rgba(6,249,6,0.08) 100%);"></div>
     <div id="ascii-container" class="absolute inset-0"></div>
 </div>
 
 <!-- ==================== SECTION 1: AVANT-GARDE WIREFRAME ==================== -->
-<div id="section1" class="relative">
+<div id="section1" class="relative overflow-x-hidden">
 <div class="flex flex-col min-h-screen max-w-[1800px] mx-auto relative overflow-hidden">
 <div class="fixed inset-0 pointer-events-none z-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
 </div>
@@ -396,7 +604,7 @@
 <span class="block ml-4 md:ml-12 text-gray-400 hover:text-primary transition-colors duration-0">很可爱是吧</span>
 </h2>
 <div class="absolute -top-20 right-0 md:right-12 rotate-12 animate-[pulse_2s_steps(2)_infinite]">
-<div class="text-secondary text-[80px] leading-none pixel-icon" style="text-shadow: 4px 4px 0 #000;">
+<div class="text-secondary text-[32px] md:text-[80px] leading-none pixel-icon" style="text-shadow: 4px 4px 0 #000;">
                                 &#10022;
                             </div>
 </div>
@@ -595,24 +803,23 @@
 </div>
 </div>
 </div>
-<div class="absolute -bottom-12 -left-12 z-30">
-<div class="text-white mix-blend-difference text-[100px] leading-none animate-[spin_10s_steps(8)_infinite]">
+<div class="absolute -bottom-12 -left-12 z-30 hidden md:block">
+<div class="text-white mix-blend-difference text-[40px] md:text-[100px] leading-none animate-[spin_10s_steps(8)_infinite]">
                             &#10043;
                         </div>
 </div>
 </div>
-<div class="col-span-1 md:col-span-4 lg:col-span-5 lg:col-start-2 relative min-h-[500px] group md:-mt-12">
-<div class="absolute inset-0 bg-cover bg-center filter-1bit group-hover:filter-none transition-all duration-500" data-alt="Cat portrait" style="background-image: url('./cat.jpg'); clip-path: polygon(
+<div class="col-span-1 md:col-span-4 lg:col-span-5 lg:col-start-2 relative min-h-[280px] md:min-h-[500px] group md:-mt-12">
+<img alt="Cat portrait" class="absolute inset-0 w-full h-full object-cover filter-1bit group-hover:filter-none transition-all duration-500" decoding="async" fetchpriority="high" height="512" loading="eager" src="./images/cat.jpg" style="clip-path: polygon(
                         0% 0%, 100% 0%, 100% 10%, 95% 10%, 95% 90%, 100% 90%, 100% 100%, 0% 100%, 0% 90%, 5% 90%, 5% 10%, 0% 10%
-                    );">
-</div>
+                    );" width="512"/>
 <div class="absolute inset-0 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABADeOQ8CXl/xfgAAAABJRU5ErkJggg==')] opacity-40 mix-blend-overlay pointer-events-none" style="image-rendering: pixelated; background-size: 4px 4px;"></div>
 <!-- Removed the hover-only layer so the cat is always visible -->
 <div class="absolute bottom-8 -right-4 bg-black border-2 border-primary p-2 z-20 rotate-[-5deg] shadow-[4px_4px_0_#fff]">
 <p class="text-primary font-body text-sm uppercase tracking-tighter">/// 已飞升.jpg</p>
 </div>
-<div class="absolute -top-16 -left-16 z-30 rotate-[15deg]">
-<div class="text-[160px] leading-none text-secondary mix-blend-screen opacity-90 font-display select-none" style="text-shadow: 4px 4px 0 #fff;">
+<div class="absolute -top-16 -left-16 z-30 rotate-[15deg] hidden md:block">
+<div class="hidden md:block text-[160px] leading-none text-secondary mix-blend-screen opacity-90 font-display select-none" style="text-shadow: 4px 4px 0 #fff;">
                             &#9786;
                         </div>
 </div>
@@ -621,7 +828,7 @@
 <div class="bg-primary p-6 md:p-8 relative overflow-visible transform hover:-translate-y-2 transition-transform steps(2) border-4 border-black shadow-[8px_8px_0_#ff00ff]">
 <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, #000 25%, #000 75%, #000 75%, #000); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
 <div class="absolute -right-8 -top-16 text-black opacity-30 pointer-events-none">
-<span class="font-display text-[120px] leading-none">&lt;/&gt;</span>
+<span class="font-display text-[40px] md:text-[120px] leading-none">&lt;/&gt;</span>
 </div>
 <h3 class="text-black text-2xl md:text-3xl font-display uppercase mb-4 relative z-10 tracking-tight drop-shadow-sm">宣言</h3>
 <div class="scroll-reveal scroll-reveal-manifesto text-black text-xl md:text-2xl font-body leading-none relative z-10">
@@ -658,8 +865,7 @@
 </div>
 <div class="col-span-1 md:col-span-3 lg:col-span-4 lg:col-start-8 mb-20 relative group">
 <div class="relative min-h-[250px] bg-[#111] overflow-hidden border-4 border-white/20 hover:border-white transition-colors">
-<div class="absolute inset-0 opacity-60 bg-cover bg-center grayscale invert contrast-200" data-alt="Map texture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSvPQnn3xyB8b7H1pknqorDiuMrZmRSx58QZW5Jy08QxwnhvhK8B8YRHYWsl6zaUxWuJWcqBM-MhSgwmmci0KuCUrrqKIzVenAgYzBMXvvvf79A86VBBryJZUjb1Ri8M5hsGZec7zzC6_XeD_fMVU69Vyrf8Z5VTxy9rAXm7iv9asb4cOReU11Qf6sv0tAjncrUpUhK8-D2q18dz27fzMD_34rqjHcHgNuDRZ6iY4bcb9VGvOkOhw64eZYfcNoxMQXAIC2JTVwzQ4'); image-rendering: pixelated;">
-</div>
+<img alt="Map texture" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale invert contrast-200" decoding="async" height="512" loading="lazy" src="./images/map-texture.jpg" width="512"/>
 <div class="absolute inset-0 bg-dither-pattern opacity-50 mix-blend-overlay"></div>
 <div class="absolute inset-0 bg-[linear-gradient(transparent_50%,_rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] pointer-events-none opacity-50"></div>
 <div class="absolute bottom-4 right-4 flex items-center gap-2 bg-black px-4 py-2 border-2 border-primary shadow-[4px_4px_0_#06f906]">
@@ -667,8 +873,8 @@
 <span class="text-sm font-body text-white tracking-widest">实时位置：东京</span>
 </div>
 </div>
-<div class="absolute -top-8 -left-8 rotate-12 mix-blend-exclusion text-white z-20">
-<div class="text-[80px] leading-none font-display">
+<div class="absolute -top-8 -left-8 rotate-12 mix-blend-exclusion text-white z-20 hidden md:block">
+<div class="text-[28px] md:text-[80px] leading-none font-display">
                         globe.exe
                     </div>
 </div>
@@ -687,7 +893,7 @@
 </footer>
 </main>
 <div class="absolute top-[20%] right-[5%] pointer-events-none z-0 mix-blend-lighten opacity-30">
-<div class="text-[200px] leading-none text-white/10 animate-[spin_20s_steps(12)_infinite] font-display">
+<div class="text-[60px] md:text-[200px] leading-none text-white/10 animate-[spin_20s_steps(12)_infinite] font-display">
             &#9881;
         </div>
 </div>
@@ -708,7 +914,7 @@
 </div>
 
 <!-- ==================== SECTION 2: MAXIMALIST PIXEL CHAOS ==================== -->
-<div id="section2" class="relative">
+<div id="section2" class="relative overflow-x-hidden">
 <div class="grain-overlay"></div>
 <div class="absolute inset-0 pointer-events-none z-0">
 <div class="absolute inset-0 dither-bg"></div>
@@ -724,7 +930,7 @@
 <div class="w-4 h-4 bg-primary shadow-[4px_4px_0_0_#06f906,8px_8px_0_0_#06f906,12px_12px_0_0_#06f906,-4px_4px_0_0_#06f906,-8px_8px_0_0_#06f906,-12px_12px_0_0_#06f906]"></div>
 </div>
 <div class="absolute top-1/3 right-1/4 z-0 hidden lg:block animate-pulse">
-<span class="material-symbols-outlined text-6xl text-primary opacity-50" style="image-rendering: pixelated;">smart_toy</span>
+<svg aria-hidden="true" class="icon-symbol text-6xl text-primary opacity-50"><use href="#icon-smart-toy"></use></svg>
 </div>
 <div class="relative z-10 flex flex-col w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 pt-8 pb-32">
 <header class="flex flex-col md:flex-row justify-between items-start md:items-center py-8 gap-6 relative">
@@ -732,7 +938,7 @@
 <div class="w-2 h-2 bg-secondary shadow-[4px_0_#ff00ff,-4px_0_#ff00ff,0_4px_#ff00ff,0_-4px_#ff00ff]"></div>
 </div>
 <div class="flex items-center gap-4 group cursor-pointer bg-white dark:bg-black p-4 pixel-border hover:bg-primary hover:text-black transition-colors duration-0">
-<span class="material-symbols-outlined text-4xl" style="image-rendering: pixelated;">terminal</span>
+<svg aria-hidden="true" class="icon-symbol text-4xl"><use href="#icon-terminal"></use></svg>
 <div class="flex flex-col leading-none font-tech">
 <span class="font-bold text-xl tracking-widest">SYSTEM_OS</span>
 <span class="text-xs text-secondary">V.9.9.9_BETA</span>
@@ -776,76 +982,164 @@
                 </p>
 </div>
 <button class="cursor-target group flex items-center gap-4 bg-black text-primary pixel-border px-6 py-4 text-xl font-display hover:bg-primary hover:text-black transition-all duration-0 shadow-[8px_8px_0_0_#ff00ff]">
-<span class="material-symbols-outlined group-hover:animate-spin" style="image-rendering: pixelated;">settings</span>
+<svg aria-hidden="true" class="icon-symbol group-hover:animate-spin"><use href="#icon-settings"></use></svg>
                 初始化
             </button>
 </div>
 </section>
 <section class="mt-32 relative">
-<div class="flex items-center gap-4 mb-16 relative">
-<div class="absolute -top-8 left-10 text-6xl animate-bounce">&#128126;</div>
-<div class="h-2 bg-primary flex-1 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzjwqgABDAxLly79zwjjwzgA9eYV8+zYgtoAAAAASUVORK5CYII=')]"></div>
-<h2 class="text-3xl md:text-5xl font-display bg-primary text-black px-6 py-2 -rotate-1 inline-block border-4 border-black shadow-[6px_6px_0_0_#ff00ff]">/// SELECTED_WORKS</h2>
+<div class="flex flex-wrap items-center gap-4 mb-16 relative">
+<div class="absolute -top-8 left-10 text-4xl md:text-6xl animate-bounce">&#128126;</div>
+<div class="h-2 bg-primary flex-1 min-w-[20px] bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzjwqgABDAxLly79zwjjwzgA9eYV8+zYgtoAAAAASUVORK5CYII=')]"></div>
+<h2 class="text-xl md:text-3xl lg:text-5xl font-display bg-primary text-black px-4 md:px-6 py-2 -rotate-1 inline-block border-4 border-black shadow-[6px_6px_0_0_#ff00ff]">/// SELECTED_WORKS</h2>
 <div class="h-2 bg-primary flex-1 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzjwqgABDAxLly79zwjjwzgA9eYV8+zYgtoAAAAASUVORK5CYII=')]"></div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-y-32 auto-rows-min">
-<div class="md:col-span-7 relative group cursor-target">
-<div class="absolute -top-6 -right-6 z-30 rotate-12 bg-secondary text-white font-tech text-sm px-3 py-1 pixel-border border-white">精选</div>
+<a aria-label="Open PhotoWall on GitHub" class="md:col-span-7 relative group cursor-target block" href="https://github.com/gy212/PhotoWall" rel="noreferrer" target="_blank">
+<div class="absolute -top-6 -right-6 z-30 rotate-12 bg-secondary text-white font-tech text-sm px-3 py-1 pixel-border border-white">LOCAL_ARCHIVE</div>
 <div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
-<div class="w-full aspect-video bg-cover bg-center grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Cyberpunk city street with neon signs and rainy atmosphere" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuATLoKKoauLHfg4U_UWfC5YPxYF5pVHIjxYc1Jw6k78cVgvSHy0hLeIxlM3rzBOiNcWoxeBz8ZHKdaQgSGa3egSN6EGXb6mIMzCEPHrGBMPU1mzyEDr4sMK6sEH6s-aQFY_NucnCZ9RxLpTCtwcTzMN_Vu5z9bn5BINcuJBrEe5xOhNnB34eIHKUBVYGz223AyV6xHaCCBFhoevqTIaLJCcIU-EMJ-Dwv7NrDb2JL3rP0zvRzwMprmSQFP65pKOvhvBe86c7G7s8sA"); image-rendering: pixelated;'>
+<div class="w-full aspect-video relative overflow-hidden grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Pixel art illustration of the PhotoWall desktop app with thumbnail wall, folders, and local media tooling">
+<img alt="Pixel art illustration of the PhotoWall desktop app with thumbnail wall, folders, and local media tooling" class="absolute inset-0 w-full h-full object-cover" decoding="async" height="512" loading="lazy" src="./images/work-photowall.svg" width="512"/>
 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-30 pointer-events-none mix-blend-hard-light"></div>
 <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
 </div>
 </div>
-<div class="absolute inset-0 bg-secondary z-0 translate-x-4 translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="absolute inset-0 bg-secondary z-0 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 border-4 border-black dark:border-transparent"></div>
 <div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-primary -rotate-1 group-hover:rotate-0 transition-transform">
 <div>
-<h3 class="text-3xl font-display uppercase">Project_Alpha</h3>
-<p class="text-lg font-body text-secondary mt-1">&lt;WEB / 3D / GLITCH&gt;</p>
+<h3 class="text-xl md:text-3xl font-display uppercase">PhotoWall</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;RUST / DESKTOP / TOOL&gt;</p>
 </div>
-<span class="material-symbols-outlined text-5xl group-hover:text-primary transition-colors" style="image-rendering: pixelated;">arrow_outward</span>
+<svg aria-hidden="true" class="icon-symbol text-5xl group-hover:text-primary transition-colors"><use href="#icon-arrow-outward"></use></svg>
+</div>
+</a>
+<div class="md:col-span-5 flex flex-col justify-between border-4 border-primary bg-black p-6 text-white shadow-[8px_8px_0_0_#ff00ff]">
+<div>
+<p class="font-tech text-sm text-secondary">PHOTO_WALL // INTRO</p>
+<h3 class="mt-4 text-2xl font-display leading-snug">本地照片浏览、索引与整理</h3>
+</div>
+<div class="space-y-4 text-lg font-body leading-relaxed">
+<p>基于 Tauri + React + TypeScript 的 Windows 桌面照片管理工具，重点放在本地图库的浏览体验，而不是云相册式上传。</p>
+<p>项目当前已经覆盖导入、缩略图浏览、全屏查看、标签管理和搜索，后续还在继续补相册与更完整的整理流程。</p>
+<p class="font-tech text-sm text-primary">STACK // TAURI / REACT / TYPESCRIPT / RUST</p>
 </div>
 </div>
-<div class="hidden md:flex md:col-span-5 items-center justify-center">
-<div class="text-8xl text-primary font-display animate-pulse opacity-20">?</div>
+<div class="md:col-span-4 md:col-start-1 flex flex-col justify-between border-4 border-secondary bg-black p-6 text-white shadow-[8px_8px_0_0_#06f906]">
+<div>
+<p class="font-tech text-sm text-primary">CHEEKAI // INTRO</p>
+<h3 class="mt-4 text-2xl font-display leading-snug">导入文档后做段落 + 句子双模式检测</h3>
 </div>
-<div class="hidden md:block md:col-span-4"></div>
-<div class="md:col-span-6 relative group mt-12 md:mt-0 cursor-target">
-<div class="absolute -top-16 -left-16 z-20 hidden md:block rotate-12">
-<div class="w-4 h-4 bg-secondary shadow-[4px_0_0_0_#ff00ff,8px_0_0_0_#ff00ff,-4px_4px_0_0_#ff00ff,12px_4px_0_0_#ff00ff,-8px_8px_0_0_#ff00ff,16px_8px_0_0_#ff00ff,-8px_12px_0_0_#ff00ff,16px_12px_0_0_#ff00ff,-4px_16px_0_0_#ff00ff,12px_16px_0_0_#ff00ff,4px_20px_0_0_#ff00ff]"></div>
+<div class="space-y-4 text-lg font-body leading-relaxed">
+<p>CheekAI 是桌面端 AI 文本检测工具，支持 TXT、PDF、DOCX，并把段落级与句子级结果做交叉融合，减少单一规则误判。</p>
+<p>仓库当前主实现已经迁到 Rust + Tauri，旧版 Python/Electron 只保留作历史存档。</p>
+<p class="font-tech text-sm text-secondary">MODE // IMPORT / SEGMENT / DETECT / MERGE</p>
 </div>
+</div>
+<a aria-label="Open CheekAI on GitHub" class="md:col-span-6 md:col-start-5 relative group mt-12 md:mt-0 cursor-target block" href="https://github.com/gy212/my-python-project-CheekAI" rel="noreferrer" target="_blank">
+<div class="absolute -top-6 -left-6 z-20 hidden md:block -rotate-6 bg-white text-black font-tech text-sm px-3 py-1 pixel-border shadow-[4px_4px_0_0_#ff00ff]">DUAL_SCAN</div>
 <div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
-<div class="w-full aspect-[4/3] bg-cover bg-center grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Abstract colorful liquid waves digital art background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzD0wtoWAnjDt9i1j1gK8Q12Xu726sRVQNrZleFUU6XRQ7RhUTQ_FaCWfpf6n2pGAID6z3FOg4B4Q_tbn-29DgVhjpyDVY1UKnLDtYOfa2wYXL_KAvUyksPPS7ED4HWL23nYySCkFoHHOqmNl-F4xUAyykCm_5ZNbcnSdVq8aYvKGQi25HWu70KlMxCelUmK4WPixCRUuUNmEdYfELzXLrxiHJVfpUKn0xdFtsNIqj-tiAVVOacE2Y5JmfESjkLSiI-ox9jL6zVUs"); image-rendering: pixelated;'>
+<div class="w-full aspect-[4/3] relative overflow-hidden grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Pixel art interface of CheekAI showing document analysis, paragraph highlights, and AI-rate detection charts">
+<img alt="Pixel art interface of CheekAI showing document analysis, paragraph highlights, and AI-rate detection charts" class="absolute inset-0 w-full h-full object-cover" decoding="async" height="512" loading="lazy" src="./images/work-cheekai.svg" width="512"/>
 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-40 pointer-events-none mix-blend-overlay"></div>
 <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
 </div>
 </div>
-<div class="absolute inset-0 bg-primary z-0 translate-x-4 translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="absolute inset-0 bg-primary z-0 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 border-4 border-black dark:border-transparent"></div>
 <div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-secondary rotate-1 group-hover:rotate-0 transition-transform">
-<span class="material-symbols-outlined text-5xl group-hover:text-primary transition-colors" style="image-rendering: pixelated;">arrow_outward</span>
+<svg aria-hidden="true" class="icon-symbol text-5xl group-hover:text-primary transition-colors"><use href="#icon-arrow-outward"></use></svg>
 <div class="text-right">
-<h3 class="text-3xl font-display uppercase">Neon_Protocol</h3>
-<p class="text-lg font-body text-secondary mt-1">&lt;UI / UX / SYSTEM&gt;</p>
+<h3 class="text-xl md:text-3xl font-display uppercase">CheekAI</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;RUST / AI / DETECTION&gt;</p>
 </div>
 </div>
-</div>
-<div class="md:col-span-5 relative group mt-12 md:-mt-32 ml-0 md:ml-12 cursor-target">
-<div class="absolute -bottom-8 -right-8 z-30 -rotate-12 bg-white text-black p-2 border-2 border-black font-body text-xl shadow-[4px_4px_0_0_#06f906]">
-                    MEOW_UI
+</a>
+<a aria-label="Open Keyboard Typer on GitHub" class="md:col-span-5 md:col-start-2 relative group mt-12 md:-mt-24 ml-0 md:ml-12 cursor-target block" href="https://github.com/gy212/my-python-project-print" rel="noreferrer" target="_blank">
+<div class="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 z-30 -rotate-12 bg-white text-black p-2 border-2 border-black font-body text-sm md:text-xl shadow-[4px_4px_0_0_#06f906]">
+                    NO_PASTE
                  </div>
 <div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
-<div class="w-full aspect-square bg-cover bg-center grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Retro computer terminal screen with green code" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAzApxGmUyJb_muzoqNuHshGLVrj5HHY1kAd8Z06GpnPiLKtunDCqW4grcJrMvIhzeAyXqnB0rAajNg_CvG1YW6UrkJozXPiyuTH5KGQ_fVkU3pt4LftJ9TXHTLeurlit8DwekGga8QyhjIJkRgdtJvP5EkdpNFa1QYC7QwVxzu7TNBZCxx-GmwpDt7JANYrorKngjAQl51ftWK-vwm6DMJEM04oUMEUcV9JfThQMZt8EPBnCqcoGqYs5mpKXFP7gWpVKe_Mq3RrY"); image-rendering: pixelated;'>
+<div class="w-full aspect-square relative overflow-hidden grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Pixel art interface of a keyboard typing utility with countdown, input stream, and paste-restriction bypass workflow">
+<img alt="Pixel art interface of a keyboard typing utility with countdown, input stream, and paste-restriction bypass workflow" class="absolute inset-0 w-full h-full object-cover" decoding="async" height="512" loading="lazy" src="./images/work-keyboard-typer.svg" width="512"/>
 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-40 pointer-events-none mix-blend-exclusion"></div>
 <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
 </div>
 </div>
-<div class="absolute inset-0 bg-secondary z-0 translate-x-4 translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="absolute inset-0 bg-secondary z-0 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 border-4 border-black dark:border-transparent"></div>
 <div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-primary rotate-2 group-hover:rotate-0 transition-transform">
 <div>
-<h3 class="text-3xl font-display uppercase">Data_Shrine</h3>
-<p class="text-lg font-body text-secondary mt-1">&lt;ART / INSTALLATION&gt;</p>
+<h3 class="text-xl md:text-3xl font-display">键盘模拟输入器</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;PYTHON / TOOL / UTILITY&gt;</p>
 </div>
-<span class="material-symbols-outlined text-5xl group-hover:text-primary transition-colors" style="image-rendering: pixelated;">arrow_outward</span>
+<svg aria-hidden="true" class="icon-symbol text-5xl group-hover:text-primary transition-colors"><use href="#icon-arrow-outward"></use></svg>
+</div>
+</a>
+<div class="md:col-span-5 md:col-start-8 flex flex-col justify-between border-4 border-primary bg-black p-6 text-white shadow-[8px_8px_0_0_#ff00ff]">
+<div>
+<p class="font-tech text-sm text-secondary">KEYBOARD_TYPER // INTRO</p>
+<h3 class="mt-4 text-2xl font-display leading-snug">给不能粘贴的场景补一个可控输入层</h3>
+</div>
+<div class="space-y-4 text-lg font-body leading-relaxed">
+<p>这是一个全中文界面的键盘模拟输入器，适合在线表单、考试系统、远程桌面或其它限制复制粘贴的环境。</p>
+<p>核心价值不是“存文本”，而是把现成内容按键盘事件重新打进去，让被限制的输入框也能使用。</p>
+<p class="font-tech text-sm text-primary">SCENES // FORM / EXAM / RDP / CHAT</p>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col justify-between border-4 border-secondary bg-black p-6 text-white shadow-[8px_8px_0_0_#06f906]">
+<div>
+<p class="font-tech text-sm text-primary">SCAN_TO_DOC // INTRO</p>
+<h3 class="mt-4 text-2xl font-display leading-snug">把图片内容转成可编辑文档，而不是只做截图留档</h3>
+</div>
+<div class="space-y-4 text-lg font-body leading-relaxed">
+<p>这个项目把 OCR 和 LLM 组合起来，把图像里的内容整理成 Word、PDF 等可继续加工的结果，适合扫描件和截图资料整理。</p>
+<p>仓库里保留了桌面运行入口、配置目录和 UI 结构，目标是把“识别”直接推进到“可交付文档”。</p>
+<p class="font-tech text-sm text-secondary">FLOW // IMAGE / OCR / LLM / EXPORT</p>
+</div>
+</div>
+<a aria-label="Open OCR scanner app on GitHub" class="md:col-span-6 md:col-start-6 relative group mt-12 md:-mt-6 cursor-target block" href="https://github.com/gy212/my-python-project-saomiao" rel="noreferrer" target="_blank">
+<div class="absolute -top-6 left-4 z-30 -rotate-6 bg-primary text-black font-tech text-sm px-3 py-1 pixel-border">SCAN_PIPE</div>
+<div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
+<div class="w-full aspect-[4/3] relative overflow-hidden grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Pixel art illustration of an OCR scanning app converting images into Word and PDF documents">
+<img alt="Pixel art illustration of an OCR scanning app converting images into Word and PDF documents" class="absolute inset-0 w-full h-full object-cover" decoding="async" height="512" loading="lazy" src="./images/work-saomiao.svg" width="512"/>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-40 pointer-events-none mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-primary z-0 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-secondary -rotate-1 group-hover:rotate-0 transition-transform">
+<div>
+<h3 class="text-xl md:text-3xl font-display">LLM 扫描转档</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;LLM / OCR / APP&gt;</p>
+</div>
+<svg aria-hidden="true" class="icon-symbol text-5xl group-hover:text-primary transition-colors"><use href="#icon-arrow-outward"></use></svg>
+</div>
+</a>
+<a aria-label="Open Claude Code Codex review on GitHub" class="md:col-span-5 md:col-start-2 relative group mt-12 md:-mt-16 cursor-target block" href="https://github.com/gy212/claude_code_-_codex_-_review" rel="noreferrer" target="_blank">
+<div class="absolute -top-6 right-6 z-30 rotate-6 bg-secondary text-white font-tech text-sm px-3 py-1 pixel-border border-white">AUTO_REVIEW</div>
+<div class="relative z-10 border-4 border-black dark:border-primary bg-black p-2 transition-transform duration-0 group-hover:-translate-y-2 group-hover:-translate-x-2">
+<div class="w-full aspect-square relative overflow-hidden grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-0" data-alt="Pixel art illustration of Claude Code and Codex automated review flow with terminal diffs and approval report">
+<img alt="Pixel art illustration of Claude Code and Codex automated review flow with terminal diffs and approval report" class="absolute inset-0 w-full h-full object-cover" decoding="async" height="512" loading="lazy" src="./images/work-review.svg" width="512"/>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-40 pointer-events-none mix-blend-exclusion"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_4px,6px_100%] pointer-events-none"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-secondary z-0 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 border-4 border-black dark:border-transparent"></div>
+<div class="mt-6 flex justify-between items-end bg-white dark:bg-black p-4 border-2 border-primary rotate-1 group-hover:rotate-0 transition-transform">
+<div>
+<h3 class="text-xl md:text-3xl font-display">Claude Code × Codex 审查</h3>
+<p class="text-lg font-body text-secondary mt-1">&lt;PYTHON / AI / DEVTOOL&gt;</p>
+</div>
+<svg aria-hidden="true" class="icon-symbol text-5xl group-hover:text-primary transition-colors"><use href="#icon-arrow-outward"></use></svg>
+</div>
+</a>
+<div class="md:col-span-5 md:col-start-8 flex flex-col justify-between border-4 border-primary bg-black p-6 text-white shadow-[8px_8px_0_0_#ff00ff]">
+<div>
+<p class="font-tech text-sm text-secondary">AUTO_REVIEW // INTRO</p>
+<h3 class="mt-4 text-2xl font-display leading-snug">在 Claude Code 结束后，自动接一轮 Codex review</h3>
+</div>
+<div class="space-y-4 text-lg font-body leading-relaxed">
+<p>这个仓库提供的是一套 Hook 方案：Claude Code 改完代码后，自动触发 Codex CLI，只审查当前会话真正碰过的文件。</p>
+<p>重点不是再造一个审查平台，而是把已有命令行工作流接起来，输出可落地的 diff review 报告。</p>
+<p class="font-tech text-sm text-primary">HOOKS // TOUCH_FILES / DIFF / CODEX_EXEC / REPORT</p>
 </div>
 </div>
 </div>
@@ -854,22 +1148,22 @@
 <div class="absolute top-0 right-0 w-4 h-4 bg-primary animate-ping"></div>
 <div class="absolute bottom-0 left-0 w-4 h-4 bg-secondary animate-ping delay-700"></div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-<div class="cursor-target bg-white dark:bg-black border-2 border-dashed border-primary p-6 flex flex-col justify-between h-48 hover:bg-primary hover:text-black transition-colors group pixel-border">
-<span class="material-symbols-outlined text-4xl mb-auto" style="image-rendering: pixelated;">code</span>
-<span class="text-5xl font-display">少的可怜</span>
+<div class="cursor-target bg-white dark:bg-black border-2 border-dashed border-primary p-4 md:p-6 flex flex-col justify-between h-auto min-h-[8rem] md:h-48 hover:bg-primary hover:text-black transition-colors group pixel-border">
+<svg aria-hidden="true" class="icon-symbol text-4xl mb-auto"><use href="#icon-code"></use></svg>
+<span class="text-2xl md:text-5xl font-display">少的可怜</span>
 <span class="text-sm font-tech text-secondary group-hover:text-black">代码仓库</span>
 </div>
-<div class="cursor-target bg-white dark:bg-black border-2 border-dashed border-primary p-6 flex flex-col justify-between h-48 hover:bg-primary hover:text-black transition-colors group pixel-border">
-<span class="material-symbols-outlined text-4xl mb-auto" style="image-rendering: pixelated;">coffee</span>
-<span class="text-5xl font-display">~~~</span>
+<div class="cursor-target bg-white dark:bg-black border-2 border-dashed border-primary p-4 md:p-6 flex flex-col justify-between h-auto min-h-[8rem] md:h-48 hover:bg-primary hover:text-black transition-colors group pixel-border">
+<svg aria-hidden="true" class="icon-symbol text-4xl mb-auto"><use href="#icon-coffee"></use></svg>
+<span class="text-2xl md:text-5xl font-display">~~~</span>
 <span class="text-sm font-tech text-secondary group-hover:text-black">咖啡因水平</span>
 </div>
-<div class="cursor-target bg-primary/20 border-2 border-primary p-6 flex flex-col justify-between h-48 hover:bg-primary hover:text-black transition-colors group col-span-2 md:col-span-2 pixel-border shadow-[8px_8px_0_0_#ff00ff]">
+<div class="cursor-target bg-primary/20 border-2 border-primary p-4 md:p-6 flex flex-col justify-between h-auto min-h-[8rem] md:h-48 hover:bg-primary hover:text-black transition-colors group col-span-2 md:col-span-2 pixel-border shadow-[8px_8px_0_0_#ff00ff]">
 <div class="flex justify-between w-full">
-<span class="material-symbols-outlined text-4xl mb-auto" style="image-rendering: pixelated;">schedule</span>
+<svg aria-hidden="true" class="icon-symbol text-4xl mb-auto"><use href="#icon-schedule"></use></svg>
 <div class="w-3 h-3 bg-red-500 animate-pulse rounded-none"></div>
 </div>
-<span class="text-5xl font-display">该写什么呢？</span>
+<span class="text-lg md:text-5xl font-display">该写什么呢？</span>
 <span class="text-sm font-tech text-secondary group-hover:text-black uppercase">乱写吧</span>
 </div>
 </div>
@@ -884,13 +1178,13 @@
         <!-- Content will be duplicated by JS -->
         <span class="marquee-content inline-flex gap-12 items-center">
             <span>/// ‘屎’山集合</span>
-            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <svg aria-hidden="true" class="icon-symbol"><use href="#icon-star"></use></svg>
             <span>还活着</span>
-            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <svg aria-hidden="true" class="icon-symbol"><use href="#icon-star"></use></svg>
             <span>感觉还行</span>
-            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <svg aria-hidden="true" class="icon-symbol"><use href="#icon-star"></use></svg>
             <span>胡乱设计</span>
-            <span class="material-symbols-outlined" style="image-rendering: pixelated;">star</span>
+            <svg aria-hidden="true" class="icon-symbol"><use href="#icon-star"></use></svg>
         </span>
     </div>
 </footer>
@@ -938,6 +1232,29 @@
         background-clip: text;
         z-index: 9;
         mix-blend-mode: difference;
+        opacity: 0.92;
+        letter-spacing: -0.04em;
+        text-shadow: 0 0 14px rgba(6, 249, 6, 0.18);
+    }
+    #ascii-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 6;
+        background:
+            repeating-linear-gradient(180deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 4px),
+            linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.18) 100%);
+        opacity: 0.22;
+    }
+    #ascii-hero::after {
+        content: '';
+        position: absolute;
+        inset: 10% 6%;
+        pointer-events: none;
+        z-index: 5;
+        border: 1px solid rgba(6, 249, 6, 0.12);
+        box-shadow: inset 0 0 36px rgba(6, 249, 6, 0.05);
     }
 
     /* Target Cursor Styles - Hidden default cursor */
@@ -956,12 +1273,14 @@
         uniform float uEnableWaves;
         void main() {
             vUv = uv;
-            float time = uTime * 5.0;
-            float waveFactor = uEnableWaves;
             vec3 transformed = position;
-            transformed.x += sin(time + position.y) * 0.5 * waveFactor;
-            transformed.y += cos(time + position.z) * 0.15 * waveFactor;
-            transformed.z += sin(time + position.x) * waveFactor;
+            float time = uTime;
+            float waveFactor = uEnableWaves * 0.32;
+            float band = smoothstep(-0.35, 0.3, sin((position.x * 0.7) + time * 2.6));
+            transformed.x += sin(time * 0.9 + position.y * 1.2) * 0.045 * waveFactor;
+            transformed.y += cos(time * 0.8 + position.x * 0.6) * 0.03 * waveFactor;
+            transformed.z += sin(time * 1.4 + position.x * 0.9) * 0.08 * waveFactor;
+            transformed.x += band * 0.12 * waveFactor;
             gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
         }
     `;
@@ -973,11 +1292,15 @@
         void main() {
             float time = uTime;
             vec2 pos = vUv;
-            float r = texture2D(uTexture, pos + cos(time * 2.0 - time + pos.x) * 0.01).r;
-            float g = texture2D(uTexture, pos + tan(time * 0.5 + pos.x - time) * 0.01).g;
-            float b = texture2D(uTexture, pos - cos(time * 2.0 + time + pos.y) * 0.01).b;
+            float scan = smoothstep(0.35, 0.95, sin((pos.y * 16.0) - time * 3.8));
+            vec2 drift = vec2(sin(pos.y * 18.0 + time * 2.1) * 0.0025, 0.0);
+            float r = texture2D(uTexture, pos + drift + vec2(scan * 0.003, 0.0)).r;
+            float g = texture2D(uTexture, pos + drift).g;
+            float b = texture2D(uTexture, pos + drift - vec2(scan * 0.002, 0.0)).b;
             float a = texture2D(uTexture, pos).a;
-            gl_FragColor = vec4(r, g, b, a);
+            vec3 color = vec3(r, g, b);
+            color += vec3(0.02, 0.09, 0.03) * scan;
+            gl_FragColor = vec4(color, a);
         }
     `;
 
@@ -993,27 +1316,23 @@
             this.pre = document.createElement('pre');
             this.domElement.appendChild(this.pre);
             this.canvas = document.createElement('canvas');
-            this.context = this.canvas.getContext('2d');
+            this.context = this.canvas.getContext('2d', { willReadFrequently: true });
             this.domElement.appendChild(this.canvas);
             this.deg = 0;
             this.invert = options.invert !== undefined ? options.invert : true;
             this.fontSize = options.fontSize || 12;
             this.fontFamily = options.fontFamily || "'Courier New', monospace";
-            this.charset = options.charset || " .'`^\",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+            this.charset = options.charset || " .:-=+*#%@";
             this.width = 0; this.height = 0;
             this.center = { x: 0, y: 0 };
-            this.mouse = { x: 0, y: 0 };
             this.cols = 0; this.rows = 0;
             if (this.context) this.context.imageSmoothingEnabled = false;
-            this.onMouseMove = this.onMouseMove.bind(this);
-            document.addEventListener('mousemove', this.onMouseMove);
         }
         setSize(width, height) {
             this.width = width; this.height = height;
             this.renderer.setSize(width, height);
             this.reset();
             this.center = { x: width / 2, y: height / 2 };
-            this.mouse = { x: this.center.x, y: this.center.y };
         }
         reset() {
             if (!this.context) return;
@@ -1032,17 +1351,12 @@
             this.context.clearRect(0, 0, w, h);
             this.context.drawImage(this.renderer.domElement, 0, 0, w, h);
             this.asciify(this.context, w, h);
-            this.hue();
+            this.applySignalTone();
         }
-        onMouseMove(e) {
-            this.mouse = { x: e.clientX, y: e.clientY };
-        }
-        hue() {
-            const dx = this.mouse.x - this.center.x;
-            const dy = this.mouse.y - this.center.y;
-            const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
-            this.deg += (deg - this.deg) * 0.075;
-            this.domElement.style.filter = `hue-rotate(${this.deg.toFixed(1)}deg)`;
+        applySignalTone() {
+            this.deg += 0.04;
+            const pulse = 0.92 + ((Math.sin(this.deg) + 1) * 0.04);
+            this.domElement.style.filter = `brightness(${pulse.toFixed(3)}) contrast(1.08) drop-shadow(0 0 18px rgba(6,249,6,0.14))`;
         }
         asciify(ctx, w, h) {
             const imgData = ctx.getImageData(0, 0, w, h).data;
@@ -1061,7 +1375,7 @@
             }
             this.pre.innerHTML = str;
         }
-        dispose() { document.removeEventListener('mousemove', this.onMouseMove); }
+        dispose() {}
     }
 
     class CanvasTxt {
@@ -1072,7 +1386,8 @@
             this.fontSize = options.fontSize || 200;
             this.fontFamily = options.fontFamily || 'Arial';
             this.color = options.color || '#fdf9f3';
-            this.font = `600 ${this.fontSize}px ${this.fontFamily}`;
+            this.fontWeight = options.fontWeight || 400;
+            this.font = `${this.fontWeight} ${this.fontSize}px ${this.fontFamily}`;
         }
         resize() {
             if (!this.context) return;
@@ -1107,11 +1422,16 @@
             this.scene = new THREE.Scene();
             this.mouse = { x: width / 2, y: height / 2 };
             this.animationFrameId = 0;
+            this.lastFrameTime = 0;
+            this.frameInterval = 1000 / (options.maxFps || 30);
+            this.isVisible = true;
+            this.visibilityObserver = null;
             this.onMouseMove = this.onMouseMove.bind(this);
         }
         async init() {
             try {
-                await document.fonts.load('600 200px "IBM Plex Mono"');
+                await document.fonts.load('400 200px "Press Start 2P"');
+                await document.fonts.load('400 200px "Zpix"');
                 await document.fonts.load('500 12px "IBM Plex Mono"');
             } catch (e) {}
             await document.fonts.ready;
@@ -1121,13 +1441,15 @@
         setMesh() {
             this.textCanvas = new CanvasTxt(this.textString, {
                 fontSize: this.textFontSize,
-                fontFamily: 'IBM Plex Mono',
+                fontFamily: '"Press Start 2P", "Zpix", monospace',
+                fontWeight: 400,
                 color: this.textColor
             });
             this.textCanvas.resize();
             this.textCanvas.render();
             this.texture = new THREE.CanvasTexture(this.textCanvas.texture);
             this.texture.minFilter = THREE.NearestFilter;
+            this.texture.needsUpdate = true;
             const textAspect = this.textCanvas.canvas.width / this.textCanvas.canvas.height;
             const baseH = this.planeBaseHeight;
             this.geometry = new THREE.PlaneGeometry(baseH * textAspect, baseH, 36, 36);
@@ -1155,6 +1477,11 @@
             this.setSize(this.width, this.height);
             this.container.addEventListener('mousemove', this.onMouseMove);
             this.container.addEventListener('touchmove', this.onMouseMove);
+            const observedElement = this.container.closest('#ascii-hero') || this.container;
+            this.visibilityObserver = new IntersectionObserver(([entry]) => {
+                this.isVisible = Boolean(entry && entry.isIntersecting);
+            }, { threshold: 0 });
+            this.visibilityObserver.observe(observedElement);
         }
         setSize(w, h) {
             this.width = w; this.height = h;
@@ -1170,25 +1497,27 @@
             this.mouse = { x: e.clientX - bounds.left, y: e.clientY - bounds.top };
         }
         animate() {
-            const animateFrame = () => {
+            const animateFrame = (timestamp = 0) => {
                 this.animationFrameId = requestAnimationFrame(animateFrame);
-                this.render();
+                if (!this.isVisible || timestamp - this.lastFrameTime < this.frameInterval) {
+                    return;
+                }
+                this.lastFrameTime = timestamp;
+                this.render(timestamp);
             };
             animateFrame();
         }
-        render() {
-            const time = Date.now() * 0.001;
-            this.textCanvas.render();
-            this.texture.needsUpdate = true;
-            this.material.uniforms.uTime.value = Math.sin(time);
-            this.updateRotation();
+        render(timestamp) {
+            const time = timestamp * 0.001;
+            this.material.uniforms.uTime.value = time;
+            this.updateRotation(time);
             this.filter.render(this.scene, this.camera);
         }
-        updateRotation() {
-            const x = map(this.mouse.y, 0, this.height, 0.5, -0.5);
-            const y = map(this.mouse.x, 0, this.width, -0.5, 0.5);
-            this.mesh.rotation.x += (x - this.mesh.rotation.x) * 0.05;
-            this.mesh.rotation.y += (y - this.mesh.rotation.y) * 0.05;
+        updateRotation(time) {
+            const x = map(this.mouse.y, 0, this.height, 0.12, -0.12) + Math.sin(time * 0.55) * 0.012;
+            const y = map(this.mouse.x, 0, this.width, -0.18, 0.18) + Math.cos(time * 0.4) * 0.02;
+            this.mesh.rotation.x += (x - this.mesh.rotation.x) * 0.035;
+            this.mesh.rotation.y += (y - this.mesh.rotation.y) * 0.04;
         }
         dispose() {
             cancelAnimationFrame(this.animationFrameId);
@@ -1200,6 +1529,9 @@
             }
             this.container.removeEventListener('mousemove', this.onMouseMove);
             this.container.removeEventListener('touchmove', this.onMouseMove);
+            if (this.visibilityObserver) {
+                this.visibilityObserver.disconnect();
+            }
         }
     }
 
@@ -1208,24 +1540,14 @@
     if (container) {
         const { width, height } = container.getBoundingClientRect();
 
-        // Random text selection
-        const randomTexts = [
-            // 问候语
-            'HELLO', 'HI THERE', 'WELCOME', 'GREETINGS', 'HEY YOU',
-            // 创意/开发词汇
-            'CODE', 'CREATE', 'BUILD', 'DESIGN', 'HACK', 'DEVELOP',
-            // 随机问题
-            'HOW ARE YOU', 'FEELING OK?', "WHAT'S UP", 'READY?'
-        ];
-        const randomText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
-
         const ascii = new CanvAscii({
-            text: randomText,
+            text: 'SIGNAL',
             asciiFontSize: 8,
-            textFontSize: 200,
+            textFontSize: 162,
             textColor: '#06f906',
-            planeBaseHeight: 8,
-            enableWaves: true
+            planeBaseHeight: 7.2,
+            enableWaves: true,
+            maxFps: 30
         }, container, width || 800, height || 400);
 
         ascii.init().then(() => ascii.load());
@@ -1241,10 +1563,7 @@
 <!-- Scroll Reveal Animation -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('[Scroll Reveal] Initializing...');
-
     gsap.registerPlugin(ScrollTrigger);
-    console.log('[Scroll Reveal] GSAP ScrollTrigger registered');
 
     // 将文本拆分为单词
     function splitTextIntoWords(element) {
@@ -1274,7 +1593,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('[Scroll Reveal] Element not found:', selector);
             return;
         }
-        console.log('[Scroll Reveal] Initializing element:', selector);
 
         const {
             baseOpacity = 0.1,
@@ -1304,7 +1622,6 @@ document.addEventListener('DOMContentLoaded', function() {
         );
 
         const wordElements = element.querySelectorAll('.word');
-        console.log('[Scroll Reveal] Found', wordElements.length, 'words in', selector);
 
         // 透明度动画
         gsap.fromTo(wordElements,
@@ -1339,8 +1656,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             );
         }
-
-        console.log('[Scroll Reveal] Animation setup complete for:', selector);
     }
 
     // 初始化三个 Scroll Reveal 位置
@@ -1364,8 +1679,6 @@ document.addEventListener('DOMContentLoaded', function() {
         baseRotation: 3
     });
 
-    console.log('[Scroll Reveal] All initializations complete');
-
     // ==================== NEW PIXEL SCROLL EFFECTS ====================
     
     // 1. Pixel Progress Bar
@@ -1379,368 +1692,375 @@ document.addEventListener('DOMContentLoaded', function() {
             scrub: 0.1
         }
     });
+    const pixelProgressShell = document.querySelector('.pixel-progress-shell');
+    let pixelRunnerScrollTimeout;
+
+    function pulsePixelRunner() {
+        if (!pixelProgressShell) {
+            return;
+        }
+
+        pixelProgressShell.classList.add('is-scrolling');
+        if (pixelRunnerScrollTimeout) {
+            clearTimeout(pixelRunnerScrollTimeout);
+        }
+
+        pixelRunnerScrollTimeout = window.setTimeout(() => {
+            pixelProgressShell.classList.remove('is-scrolling');
+        }, 180);
+    }
+
+    window.addEventListener('scroll', pulsePixelRunner, { passive: true });
+
+    const animatedElements = document.querySelectorAll('[class*="animate-"]');
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const className = entry.target.getAttribute('class') || '';
+            entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+            if (className.includes('animate-spin') || className.includes('animate-ping')) {
+                entry.target.style.willChange = entry.isIntersecting ? 'transform' : '';
+            }
+        });
+    }, { threshold: 0 });
+
+    animatedElements.forEach((element) => {
+        animationObserver.observe(element);
+    });
 
     // 2. Velocity Glitch
-    // Apply to specific containers to avoid breaking fixed elements
-    const glitchTargets = document.querySelectorAll('main, .section-divider, #section1, #section2');
+    const glitchTargets = document.querySelectorAll('.section-divider');
+    let glitchTimeout = null;
+    let rafPending = false;
+    let lastVelocity = 0;
+
+    function applyVelocityGlitch(velocity) {
+        if (velocity > 3500) {
+            glitchTargets.forEach((element) => element.classList.add('velocity-glitch'));
+            if (glitchTimeout) {
+                clearTimeout(glitchTimeout);
+            }
+            glitchTimeout = setTimeout(() => {
+                glitchTargets.forEach((element) => element.classList.remove('velocity-glitch'));
+                glitchTimeout = null;
+            }, 200);
+            return;
+        }
+
+        glitchTargets.forEach((element) => element.classList.remove('velocity-glitch'));
+        if (glitchTimeout) {
+            clearTimeout(glitchTimeout);
+            glitchTimeout = null;
+        }
+    }
     
     ScrollTrigger.create({
         onUpdate: (self) => {
-            const velocity = Math.abs(self.getVelocity());
-            // Threshold: 3000 is fast scroll
-            if (velocity > 3500) {
-                glitchTargets.forEach(el => el.classList.add('velocity-glitch'));
-                document.body.style.backgroundColor = '#0f230f'; // Flash dark green background
-            } else {
-                glitchTargets.forEach(el => el.classList.remove('velocity-glitch'));
-                document.body.style.backgroundColor = ''; 
+            lastVelocity = Math.abs(self.getVelocity());
+            if (rafPending) {
+                return;
             }
+            rafPending = true;
+            requestAnimationFrame(() => {
+                rafPending = false;
+                applyVelocityGlitch(lastVelocity);
+            });
         }
     });
 });
 </script>
 
-<!-- Target Cursor React Component -->
-<script type="text/babel">
-const { useEffect, useRef, useCallback, useMemo } = React;
-
-const TargetCursor = ({
-  targetSelector = '.cursor-target',
-  spinDuration = 2,
-  hideDefaultCursor = true,
-  hoverDuration = 0.2,
-  parallaxOn = true
-}) => {
-  const cursorRef = useRef(null);
-  const cornersRef = useRef(null);
-  const spinTl = useRef(null);
-  const dotRef = useRef(null);
-
-  const isActiveRef = useRef(false);
-  const targetCornerPositionsRef = useRef(null);
-  const tickerFnRef = useRef(null);
-  const activeStrengthRef = useRef({ current: 0 });
-
-  const isMobile = useMemo(() => {
-    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth <= 768;
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
-    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
-    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
-  }, []);
-
-  const constants = useMemo(() => ({ borderWidth: 3, cornerSize: 12 }), []);
-
-  const moveCursor = useCallback((x, y) => {
-    if (!cursorRef.current) return;
-    gsap.to(cursorRef.current, { x, y, duration: 0.1, ease: 'power3.out' });
-  }, []);
-
-  useEffect(() => {
-    if (isMobile || !cursorRef.current) return;
-
-    const originalCursor = document.body.style.cursor;
-    if (hideDefaultCursor) {
-      document.body.style.cursor = 'none';
-      document.body.classList.add('cursor-hidden');
+<!-- Target Cursor -->
+<script>
+(function() {
+    function isMobileCursorDevice() {
+        const hasTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        const isSmallScreen = window.innerWidth <= 768;
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+        return (hasTouchScreen && isSmallScreen) || mobileRegex.test(String(userAgent).toLowerCase());
     }
 
-    const cursor = cursorRef.current;
-    cornersRef.current = cursor.querySelectorAll('.target-cursor-corner');
+    function createCursorPart(className, styleText) {
+        const node = document.createElement("div");
+        node.className = className;
+        node.style.cssText = styleText;
+        return node;
+    }
 
-    let activeTarget = null;
-    let currentLeaveHandler = null;
-    let resumeTimeout = null;
+    function initTargetCursor(options = {}) {
+        const {
+            targetSelector = ".cursor-target",
+            spinDuration = 2,
+            hideDefaultCursor = true,
+            hoverDuration = 0.2,
+            parallaxOn = true
+        } = options;
 
-    const cleanupTarget = (target) => {
-      if (currentLeaveHandler) {
-        target.removeEventListener('mouseleave', currentLeaveHandler);
-      }
-      currentLeaveHandler = null;
-    };
-
-    gsap.set(cursor, {
-      xPercent: -50,
-      yPercent: -50,
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2
-    });
-
-    const createSpinTimeline = () => {
-      if (spinTl.current) {
-        spinTl.current.kill();
-      }
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursor, { rotation: '+=360', duration: spinDuration, ease: 'none' });
-    };
-
-    createSpinTimeline();
-
-    const tickerFn = () => {
-      if (!targetCornerPositionsRef.current || !cursorRef.current || !cornersRef.current) {
-        return;
-      }
-      const strength = activeStrengthRef.current.current;
-      if (strength === 0) return;
-      const cursorX = gsap.getProperty(cursorRef.current, 'x');
-      const cursorY = gsap.getProperty(cursorRef.current, 'y');
-      const corners = Array.from(cornersRef.current);
-      corners.forEach((corner, i) => {
-        const currentX = gsap.getProperty(corner, 'x');
-        const currentY = gsap.getProperty(corner, 'y');
-        const targetX = targetCornerPositionsRef.current[i].x - cursorX;
-        const targetY = targetCornerPositionsRef.current[i].y - cursorY;
-        const finalX = currentX + (targetX - currentX) * strength;
-        const finalY = currentY + (targetY - currentY) * strength;
-        const duration = strength >= 0.99 ? (parallaxOn ? 0.2 : 0) : 0.05;
-        gsap.to(corner, {
-          x: finalX,
-          y: finalY,
-          duration: duration,
-          ease: duration === 0 ? 'none' : 'power1.out',
-          overwrite: 'auto'
-        });
-      });
-    };
-
-    tickerFnRef.current = tickerFn;
-
-    const moveHandler = (e) => moveCursor(e.clientX, e.clientY);
-    window.addEventListener('mousemove', moveHandler);
-
-    const scrollHandler = () => {
-      if (!activeTarget || !cursorRef.current) return;
-      const mouseX = gsap.getProperty(cursorRef.current, 'x');
-      const mouseY = gsap.getProperty(cursorRef.current, 'y');
-      const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
-      const isStillOverTarget =
-        elementUnderMouse &&
-        (elementUnderMouse === activeTarget || elementUnderMouse.closest(targetSelector) === activeTarget);
-      if (!isStillOverTarget) {
-        currentLeaveHandler?.();
-      }
-    };
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-
-    const mouseDownHandler = () => {
-      if (!dotRef.current) return;
-      gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
-      gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
-    };
-
-    const mouseUpHandler = () => {
-      if (!dotRef.current) return;
-      gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
-      gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
-    };
-
-    window.addEventListener('mousedown', mouseDownHandler);
-    window.addEventListener('mouseup', mouseUpHandler);
-
-    const enterHandler = (e) => {
-      const directTarget = e.target;
-      const allTargets = [];
-      let current = directTarget;
-      while (current && current !== document.body) {
-        if (current.matches && current.matches(targetSelector)) {
-          allTargets.push(current);
+        const root = document.getElementById("cursor-root");
+        if (!root || isMobileCursorDevice()) {
+            return null;
         }
-        current = current.parentElement;
-      }
-      const target = allTargets[0] || null;
-      if (!target || !cursorRef.current || !cornersRef.current) return;
-      if (activeTarget === target) return;
-      if (activeTarget) {
-        cleanupTarget(activeTarget);
-      }
-      if (resumeTimeout) {
-        clearTimeout(resumeTimeout);
-        resumeTimeout = null;
-      }
 
-      activeTarget = target;
-      const corners = Array.from(cornersRef.current);
-      corners.forEach(corner => gsap.killTweensOf(corner));
-      gsap.killTweensOf(cursorRef.current, 'rotation');
-      spinTl.current?.pause();
-      gsap.set(cursorRef.current, { rotation: 0 });
+        const borderWidth = 3;
+        const cornerSize = 12;
+        const activeStrength = { current: 0 };
+        let targetCornerPositions = null;
+        let activeTarget = null;
+        let currentLeaveHandler = null;
+        let resumeTimeout = null;
+        let spinTimeline = null;
 
-      const rect = target.getBoundingClientRect();
-      const { borderWidth, cornerSize } = constants;
-      const cursorX = gsap.getProperty(cursorRef.current, 'x');
-      const cursorY = gsap.getProperty(cursorRef.current, 'y');
-
-      targetCornerPositionsRef.current = [
-        { x: rect.left - borderWidth, y: rect.top - borderWidth },
-        { x: rect.right + borderWidth - cornerSize, y: rect.top - borderWidth },
-        { x: rect.right + borderWidth - cornerSize, y: rect.bottom + borderWidth - cornerSize },
-        { x: rect.left - borderWidth, y: rect.bottom + borderWidth - cornerSize }
-      ];
-
-      isActiveRef.current = true;
-      gsap.ticker.add(tickerFnRef.current);
-
-      gsap.to(activeStrengthRef.current, { current: 1, duration: hoverDuration, ease: 'power2.out' });
-
-      corners.forEach((corner, i) => {
-        gsap.to(corner, {
-          x: targetCornerPositionsRef.current[i].x - cursorX,
-          y: targetCornerPositionsRef.current[i].y - cursorY,
-          duration: 0.2,
-          ease: 'power2.out'
-        });
-      });
-
-      const leaveHandler = () => {
-        gsap.ticker.remove(tickerFnRef.current);
-        isActiveRef.current = false;
-        targetCornerPositionsRef.current = null;
-        gsap.set(activeStrengthRef.current, { current: 0, overwrite: true });
-        activeTarget = null;
-        if (cornersRef.current) {
-          const corners = Array.from(cornersRef.current);
-          gsap.killTweensOf(corners);
-          const { cornerSize } = constants;
-          const positions = [
-            { x: -cornerSize * 1.5, y: -cornerSize * 1.5 },
-            { x: cornerSize * 0.5, y: -cornerSize * 1.5 },
-            { x: cornerSize * 0.5, y: cornerSize * 0.5 },
-            { x: -cornerSize * 1.5, y: cornerSize * 0.5 }
-          ];
-          const tl = gsap.timeline();
-          corners.forEach((corner, index) => {
-            tl.to(corner, { x: positions[index].x, y: positions[index].y, duration: 0.3, ease: 'power3.out' }, 0);
-          });
+        const originalCursor = document.body.style.cursor;
+        if (hideDefaultCursor) {
+            document.body.style.cursor = "none";
+            document.body.classList.add("cursor-hidden");
         }
-        resumeTimeout = setTimeout(() => {
-          if (!activeTarget && cursorRef.current && spinTl.current) {
-            const currentRotation = gsap.getProperty(cursorRef.current, 'rotation');
-            const normalizedRotation = currentRotation % 360;
-            spinTl.current.kill();
-            spinTl.current = gsap
-              .timeline({ repeat: -1 })
-              .to(cursorRef.current, { rotation: '+=360', duration: spinDuration, ease: 'none' });
-            gsap.to(cursorRef.current, {
-              rotation: normalizedRotation + 360,
-              duration: spinDuration * (1 - normalizedRotation / 360),
-              ease: 'none',
-              onComplete: () => {
-                spinTl.current?.restart();
-              }
+
+        const cursor = document.createElement("div");
+        cursor.className = "fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999]";
+        cursor.style.willChange = "transform";
+
+        const dot = createCursorPart(
+            "absolute top-1/2 left-1/2 w-1 h-1 rounded-none -translate-x-1/2 -translate-y-1/2",
+            "will-change:transform;background-color:#06f906;box-shadow:0 0 8px #06f906,0 0 16px #06f906;"
+        );
+
+        const cornerStyle = "will-change:transform;border-width:3px;border-style:solid;border-color:#06f906;box-shadow:0 0 6px #06f906;";
+        const corners = [
+            createCursorPart("target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0", cornerStyle),
+            createCursorPart("target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0", cornerStyle),
+            createCursorPart("target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 translate-x-1/2 translate-y-1/2 border-l-0 border-t-0", cornerStyle),
+            createCursorPart("target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0", cornerStyle)
+        ];
+
+        cursor.appendChild(dot);
+        corners.forEach((corner) => cursor.appendChild(corner));
+        root.replaceChildren(cursor);
+
+        gsap.set(cursor, {
+            xPercent: -50,
+            yPercent: -50,
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2
+        });
+
+        function createSpinTimeline() {
+            if (spinTimeline) {
+                spinTimeline.kill();
+            }
+            spinTimeline = gsap.timeline({ repeat: -1 }).to(cursor, {
+                rotation: "+=360",
+                duration: spinDuration,
+                ease: "none"
             });
-          }
-          resumeTimeout = null;
-        }, 50);
-        cleanupTarget(target);
-      };
-      currentLeaveHandler = leaveHandler;
-      target.addEventListener('mouseleave', leaveHandler);
-    };
+        }
 
-    window.addEventListener('mouseover', enterHandler);
+        function cleanupTarget(target) {
+            if (currentLeaveHandler && target) {
+                target.removeEventListener("mouseleave", currentLeaveHandler);
+            }
+            currentLeaveHandler = null;
+        }
 
-    return () => {
-      if (tickerFnRef.current) {
-        gsap.ticker.remove(tickerFnRef.current);
-      }
-      window.removeEventListener('mousemove', moveHandler);
-      window.removeEventListener('mouseover', enterHandler);
-      window.removeEventListener('scroll', scrollHandler);
-      window.removeEventListener('mousedown', mouseDownHandler);
-      window.removeEventListener('mouseup', mouseUpHandler);
-      if (activeTarget) {
-        cleanupTarget(activeTarget);
-      }
-      spinTl.current?.kill();
-      document.body.style.cursor = originalCursor;
-      document.body.classList.remove('cursor-hidden');
-      isActiveRef.current = false;
-      targetCornerPositionsRef.current = null;
-      activeStrengthRef.current.current = 0;
-    };
-  }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor, isMobile, hoverDuration, parallaxOn]);
+        function resetCorners() {
+            const positions = [
+                { x: -cornerSize * 1.5, y: -cornerSize * 1.5 },
+                { x: cornerSize * 0.5, y: -cornerSize * 1.5 },
+                { x: cornerSize * 0.5, y: cornerSize * 0.5 },
+                { x: -cornerSize * 1.5, y: cornerSize * 0.5 }
+            ];
+            corners.forEach((corner, index) => {
+                gsap.to(corner, {
+                    x: positions[index].x,
+                    y: positions[index].y,
+                    duration: 0.3,
+                    ease: "power3.out",
+                    overwrite: "auto"
+                });
+            });
+        }
 
-  useEffect(() => {
-    if (isMobile || !cursorRef.current || !spinTl.current) return;
-    if (spinTl.current.isActive()) {
-      spinTl.current.kill();
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursorRef.current, { rotation: '+=360', duration: spinDuration, ease: 'none' });
+        function tickerFn() {
+            if (!targetCornerPositions) {
+                return;
+            }
+            const strength = activeStrength.current;
+            if (strength === 0) {
+                return;
+            }
+            const cursorX = gsap.getProperty(cursor, "x");
+            const cursorY = gsap.getProperty(cursor, "y");
+            corners.forEach((corner, index) => {
+                const currentX = gsap.getProperty(corner, "x");
+                const currentY = gsap.getProperty(corner, "y");
+                const targetX = targetCornerPositions[index].x - cursorX;
+                const targetY = targetCornerPositions[index].y - cursorY;
+                const duration = strength >= 0.99 ? (parallaxOn ? 0.2 : 0) : 0.05;
+                gsap.to(corner, {
+                    x: currentX + (targetX - currentX) * strength,
+                    y: currentY + (targetY - currentY) * strength,
+                    duration,
+                    ease: duration === 0 ? "none" : "power1.out",
+                    overwrite: "auto"
+                });
+            });
+        }
+
+        function leaveTarget() {
+            gsap.ticker.remove(tickerFn);
+            targetCornerPositions = null;
+            activeStrength.current = 0;
+            activeTarget = null;
+            gsap.killTweensOf(corners);
+            resetCorners();
+
+            resumeTimeout = window.setTimeout(() => {
+                if (!activeTarget && spinTimeline) {
+                    const currentRotation = Number(gsap.getProperty(cursor, "rotation")) || 0;
+                    const normalizedRotation = ((currentRotation % 360) + 360) % 360;
+                    spinTimeline.kill();
+                    spinTimeline = gsap.timeline({ repeat: -1 }).to(cursor, {
+                        rotation: "+=360",
+                        duration: spinDuration,
+                        ease: "none"
+                    });
+                    gsap.to(cursor, {
+                        rotation: normalizedRotation + 360,
+                        duration: spinDuration * (1 - normalizedRotation / 360),
+                        ease: "none",
+                        onComplete: () => spinTimeline && spinTimeline.restart()
+                    });
+                }
+                resumeTimeout = null;
+            }, 50);
+        }
+
+        function moveHandler(event) {
+            gsap.to(cursor, {
+                x: event.clientX,
+                y: event.clientY,
+                duration: 0.1,
+                ease: "power3.out",
+                overwrite: "auto"
+            });
+        }
+
+        function mouseDownHandler() {
+            gsap.to(dot, { scale: 0.7, duration: 0.3, overwrite: "auto" });
+            gsap.to(cursor, { scale: 0.9, duration: 0.2, overwrite: "auto" });
+        }
+
+        function mouseUpHandler() {
+            gsap.to(dot, { scale: 1, duration: 0.3, overwrite: "auto" });
+            gsap.to(cursor, { scale: 1, duration: 0.2, overwrite: "auto" });
+        }
+
+        function scrollHandler() {
+            if (!activeTarget) {
+                return;
+            }
+            const mouseX = gsap.getProperty(cursor, "x");
+            const mouseY = gsap.getProperty(cursor, "y");
+            const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
+            const stillOverTarget = elementUnderMouse &&
+                (elementUnderMouse === activeTarget || elementUnderMouse.closest(targetSelector) === activeTarget);
+
+            if (!stillOverTarget && currentLeaveHandler) {
+                currentLeaveHandler();
+            }
+        }
+
+        function enterHandler(event) {
+            const target = event.target && event.target.closest ? event.target.closest(targetSelector) : null;
+            if (!target || target === activeTarget) {
+                return;
+            }
+            if (activeTarget) {
+                cleanupTarget(activeTarget);
+            }
+            if (resumeTimeout) {
+                clearTimeout(resumeTimeout);
+                resumeTimeout = null;
+            }
+
+            activeTarget = target;
+            corners.forEach((corner) => gsap.killTweensOf(corner));
+            gsap.killTweensOf(cursor, "rotation");
+            if (spinTimeline) {
+                spinTimeline.pause();
+            }
+            gsap.set(cursor, { rotation: 0 });
+
+            const rect = target.getBoundingClientRect();
+            const cursorX = gsap.getProperty(cursor, "x");
+            const cursorY = gsap.getProperty(cursor, "y");
+            targetCornerPositions = [
+                { x: rect.left - borderWidth, y: rect.top - borderWidth },
+                { x: rect.right + borderWidth - cornerSize, y: rect.top - borderWidth },
+                { x: rect.right + borderWidth - cornerSize, y: rect.bottom + borderWidth - cornerSize },
+                { x: rect.left - borderWidth, y: rect.bottom + borderWidth - cornerSize }
+            ];
+
+            gsap.ticker.add(tickerFn);
+            gsap.to(activeStrength, {
+                current: 1,
+                duration: hoverDuration,
+                ease: "power2.out",
+                overwrite: "auto"
+            });
+
+            corners.forEach((corner, index) => {
+                gsap.to(corner, {
+                    x: targetCornerPositions[index].x - cursorX,
+                    y: targetCornerPositions[index].y - cursorY,
+                    duration: 0.2,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            });
+
+            currentLeaveHandler = function currentLeave() {
+                leaveTarget();
+                cleanupTarget(target);
+            };
+            target.addEventListener("mouseleave", currentLeaveHandler);
+        }
+
+        createSpinTimeline();
+        resetCorners();
+
+        window.addEventListener("mousemove", moveHandler);
+        window.addEventListener("mouseover", enterHandler);
+        window.addEventListener("scroll", scrollHandler, { passive: true });
+        window.addEventListener("mousedown", mouseDownHandler);
+        window.addEventListener("mouseup", mouseUpHandler);
+
+        return {
+            destroy() {
+                if (resumeTimeout) {
+                    clearTimeout(resumeTimeout);
+                }
+                gsap.ticker.remove(tickerFn);
+                window.removeEventListener("mousemove", moveHandler);
+                window.removeEventListener("mouseover", enterHandler);
+                window.removeEventListener("scroll", scrollHandler);
+                window.removeEventListener("mousedown", mouseDownHandler);
+                window.removeEventListener("mouseup", mouseUpHandler);
+                if (activeTarget) {
+                    cleanupTarget(activeTarget);
+                }
+                if (spinTimeline) {
+                    spinTimeline.kill();
+                }
+                document.body.style.cursor = originalCursor;
+                document.body.classList.remove("cursor-hidden");
+                root.replaceChildren();
+            }
+        };
     }
-  }, [spinDuration, isMobile]);
 
-  if (isMobile) {
-    return null;
-  }
-
-  // Custom neon green (#06f906) and magenta (#ff00ff) theme
-  return (
-    <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999]"
-      style={{ willChange: 'transform' }}
-    >
-      {/* Center dot with neon glow */}
-      <div
-        ref={dotRef}
-        className="absolute top-1/2 left-1/2 w-1 h-1 rounded-none -translate-x-1/2 -translate-y-1/2"
-        style={{
-          willChange: 'transform',
-          backgroundColor: '#06f906',
-          boxShadow: '0 0 8px #06f906, 0 0 16px #06f906'
-        }}
-      />
-      {/* Corner brackets with neon styling */}
-      <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
-        style={{
-          willChange: 'transform',
-          borderWidth: '3px',
-          borderStyle: 'solid',
-          borderColor: '#06f906',
-          boxShadow: '0 0 6px #06f906'
-        }}
-      />
-      <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
-        style={{
-          willChange: 'transform',
-          borderWidth: '3px',
-          borderStyle: 'solid',
-          borderColor: '#06f906',
-          boxShadow: '0 0 6px #06f906'
-        }}
-      />
-      <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
-        style={{
-          willChange: 'transform',
-          borderWidth: '3px',
-          borderStyle: 'solid',
-          borderColor: '#06f906',
-          boxShadow: '0 0 6px #06f906'
-        }}
-      />
-      <div
-        className="target-cursor-corner absolute top-1/2 left-1/2 w-3 h-3 -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
-        style={{
-          willChange: 'transform',
-          borderWidth: '3px',
-          borderStyle: 'solid',
-          borderColor: '#06f906',
-          boxShadow: '0 0 6px #06f906'
-        }}
-      />
-    </div>
-  );
-};
-
-// Render the Target Cursor component
-const root = ReactDOM.createRoot(document.getElementById('cursor-root'));
-root.render(<TargetCursor targetSelector=".cursor-target" />);
+    initTargetCursor({ targetSelector: ".cursor-target" });
+})();
 </script>
 
 </body></html>

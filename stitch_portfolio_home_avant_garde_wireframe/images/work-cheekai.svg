@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#140616" />
+      <stop offset="100%" stop-color="#091c19" />
+    </linearGradient>
+    <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0H0V16" fill="none" stroke="#7affdd" stroke-opacity=".18" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="320" height="240" fill="url(#bg)" />
+  <rect width="320" height="240" fill="url(#grid)" />
+  <rect x="22" y="22" width="132" height="196" fill="#f7f8fa" stroke="#ff2fb5" stroke-width="4" />
+  <rect x="166" y="22" width="132" height="196" fill="#08110f" stroke="#7affdd" stroke-width="4" />
+  <rect x="34" y="40" width="84" height="8" fill="#171a24" />
+  <rect x="34" y="58" width="102" height="6" fill="#69728f" />
+  <rect x="34" y="70" width="92" height="6" fill="#69728f" />
+  <rect x="34" y="82" width="94" height="6" fill="#69728f" />
+  <rect x="34" y="104" width="102" height="6" fill="#69728f" />
+  <rect x="34" y="116" width="88" height="6" fill="#69728f" />
+  <rect x="34" y="128" width="96" height="6" fill="#69728f" />
+  <rect x="34" y="146" width="84" height="10" fill="#ffcf55" />
+  <rect x="34" y="166" width="92" height="6" fill="#69728f" />
+  <rect x="34" y="178" width="84" height="6" fill="#69728f" />
+  <rect x="34" y="190" width="74" height="6" fill="#69728f" />
+  <rect x="126" y="34" width="10" height="172" fill="#ff2fb5" opacity=".9" />
+  <rect x="178" y="38" width="42" height="18" fill="#132520" stroke="#7affdd" stroke-width="4" />
+  <rect x="232" y="38" width="54" height="18" fill="#132520" stroke="#ff2fb5" stroke-width="4" />
+  <rect x="178" y="72" width="18" height="18" fill="#7affdd" />
+  <rect x="202" y="72" width="18" height="18" fill="#132520" stroke="#7affdd" stroke-width="4" />
+  <rect x="226" y="72" width="18" height="18" fill="#132520" stroke="#7affdd" stroke-width="4" />
+  <rect x="250" y="72" width="18" height="18" fill="#132520" stroke="#7affdd" stroke-width="4" />
+  <rect x="274" y="72" width="12" height="18" fill="#132520" stroke="#7affdd" stroke-width="4" />
+  <rect x="178" y="106" width="14" height="58" fill="#1cff7a" />
+  <rect x="198" y="120" width="14" height="44" fill="#7affdd" />
+  <rect x="218" y="92" width="14" height="72" fill="#ffcf55" />
+  <rect x="238" y="134" width="14" height="30" fill="#ff2fb5" />
+  <rect x="258" y="114" width="14" height="50" fill="#7affdd" />
+  <rect x="278" y="98" width="8" height="66" fill="#1cff7a" />
+  <rect x="178" y="178" width="108" height="22" fill="#0d1715" stroke="#7affdd" stroke-width="4" />
+  <rect x="188" y="186" width="16" height="8" fill="#ff2fb5" />
+  <rect x="210" y="186" width="44" height="8" fill="#1cff7a" />
+  <rect x="260" y="186" width="16" height="8" fill="#ffcf55" />
+  <rect x="240" y="100" width="36" height="36" fill="none" stroke="#ff2fb5" stroke-width="4" />
+  <rect x="248" y="108" width="20" height="20" fill="#fff59d" />
+  <rect x="252" y="112" width="4" height="4" fill="#09110f" />
+  <rect x="260" y="112" width="4" height="4" fill="#09110f" />
+  <rect x="256" y="120" width="4" height="4" fill="#09110f" />
+</svg>
